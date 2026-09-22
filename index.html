@@ -3,469 +3,527 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UzGuard — Maxfiylik siyosati / Политика конфиденциальности</title>
-<meta name="description" content="UzGuard (com.kiberqalqon) antivirus ilovasining maxfiylik siyosati — qanday ma'lumot yig'iladi, nima uchun va qanday boshqariladi.">
+<title>UzGuard — oflayn antivirus. Telefoningiz himoya ostida</title>
+<meta name="description" content="UzGuard — O'zbekiston uchun oflayn Android antivirus. Zararli APK fayllarni o'rnatishdan oldin, internetsiz aniqlaydi. Davlat reyestrida ro'yxatdan o'tgan (DGU 68288).">
+<meta name="theme-color" content="#0A1730">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/logo-192.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="UzGuard — Telefoningiz himoya ostida">
+<meta property="og:description" content="Oflayn antivirus: zararli APK fayllarni internetsiz aniqlaydi. Milliy. Maxfiy. Bepul.">
+<meta property="og:image" content="https://muhammadali22072011.github.io/uzguard/assets/og.png">
+<meta property="og:url" content="https://muhammadali22072011.github.io/uzguard/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#faf6f0; --panel:#ffffff; --ink:#1c1917; --muted:#6b6360;
-    --line:#e7ddd2; --accent:#c2143d; --accent-soft:#fbe9ed;
-    --ok:#0f7a54; --ok-soft:#e6f4ee; --warn:#8a5a00; --warn-soft:#fdf1dd;
-    --code:#f2ece4; --maxw:860px;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#151210; --panel:#1e1a17; --ink:#f4efe9; --muted:#a99f97;
-      --line:#332c26; --accent:#ff5c78; --accent-soft:#341018;
-      --ok:#4bd6a0; --ok-soft:#0f2b22; --warn:#e7b45a; --warn-soft:#2e2410;
-      --code:#26211d;
-    }
-  }
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    margin:0; background:var(--bg); color:var(--ink);
-    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    line-height:1.65; font-size:16px;
-  }
-  a{color:var(--accent); text-decoration:none}
-  a:hover{text-decoration:underline}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
-  header.top{
-    background:linear-gradient(135deg,var(--accent) 0%, #7a0d26 100%);
-    color:#fff; padding:34px 0 30px;
-  }
-  @media (prefers-color-scheme: dark){
-    header.top{background:linear-gradient(135deg,#5a0a1c 0%, #24080f 100%)}
-  }
-  header.top .badge{
-    display:inline-block; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
-    background:rgba(255,255,255,.16); padding:4px 12px; border-radius:999px; margin-bottom:12px;
-  }
-  header.top h1{margin:0 0 6px; font-size:clamp(24px,5vw,34px); line-height:1.2}
-  header.top p{margin:2px 0; opacity:.94; font-size:15px}
-  .meta{
-    display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:16px; font-size:13.5px; opacity:.95;
-  }
-  .meta span{white-space:nowrap}
-  .langbar{
-    position:sticky; top:0; z-index:20; background:var(--panel);
-    border-bottom:1px solid var(--line);
-    display:flex; gap:8px; align-items:center; padding:10px 20px; flex-wrap:wrap;
-  }
-  .langbar .lbl{font-size:13px; color:var(--muted); margin-right:2px}
-  .langbar button{
-    font:inherit; font-size:14px; cursor:pointer; border:1px solid var(--line);
-    background:transparent; color:var(--ink); padding:6px 16px; border-radius:999px;
-  }
-  .langbar button[aria-pressed="true"]{
-    background:var(--accent); color:#fff; border-color:var(--accent);
-  }
-  main{padding:26px 0 60px}
-  section.doc{display:none}
-  section.doc.active{display:block}
-  h2{
-    font-size:20px; margin:34px 0 10px; padding-top:8px; line-height:1.3;
-    border-top:1px solid var(--line);
-  }
-  h2:first-of-type{border-top:0; margin-top:6px}
-  h3{font-size:16px; margin:20px 0 6px}
-  p{margin:10px 0}
-  ul{margin:10px 0; padding-left:22px}
-  li{margin:6px 0}
-  .lead{font-size:17px; color:var(--ink)}
-  .card{
-    background:var(--panel); border:1px solid var(--line); border-radius:14px;
-    padding:16px 18px; margin:16px 0;
-  }
-  .card.accent{border-left:4px solid var(--accent)}
-  .pill{
-    display:inline-block; font-size:12px; font-weight:600; padding:2px 10px; border-radius:999px;
-    vertical-align:middle; margin-left:6px;
-  }
-  .pill.opt{background:var(--warn-soft); color:var(--warn)}
-  .pill.off{background:var(--code); color:var(--muted)}
-  .pill.local{background:var(--ok-soft); color:var(--ok)}
-  .keyval{margin:14px 0}
-  .keyval .row{
-    display:grid; grid-template-columns:170px 1fr; gap:4px 18px;
-    padding:9px 0; border-bottom:1px dashed var(--line);
-  }
-  .keyval .row:last-child{border-bottom:0}
-  .keyval .k{color:var(--muted); font-size:14px}
-  @media (max-width:560px){ .keyval .row{grid-template-columns:1fr} .keyval .k{font-weight:600} }
-  .never{background:var(--ok-soft); border:1px solid transparent; border-radius:14px; padding:14px 18px; margin:16px 0}
-  .never h3{margin-top:2px; color:var(--ok)}
-  code{background:var(--code); padding:2px 6px; border-radius:6px; font-size:.92em; word-break:break-word}
-  .toc{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:14px 18px; margin:8px 0 4px}
-  .toc ol{margin:6px 0 0; padding-left:20px; columns:2; column-gap:26px; font-size:14.5px}
-  @media (max-width:560px){ .toc ol{columns:1} }
-  table.summary{border-collapse:collapse; width:100%; margin:14px 0; font-size:14px}
-  table.summary th, table.summary td{border:1px solid var(--line); padding:9px 11px; text-align:left; vertical-align:top}
-  table.summary th{background:var(--code); font-weight:600}
-  .scroll{overflow-x:auto}
-  footer{border-top:1px solid var(--line); padding:24px 0 50px; color:var(--muted); font-size:13.5px}
-  .cta{display:inline-block; margin-top:6px; background:var(--accent-soft); color:var(--accent);
-       padding:8px 16px; border-radius:10px; font-weight:600}
-  hr.soft{border:0; border-top:1px solid var(--line); margin:26px 0}
+:root{
+  --paper:#F4F1EA; --paper-2:#ECE7DC; --ink:#0A1730; --ink-2:#33465F; --ink-3:#6A7A93;
+  --blue:#2F7EF2; --blue-deep:#1B5FCE; --green:#22A94E; --green-deep:#12793C; --anor:#C2143D;
+  --line:rgba(10,23,48,.12); --line-2:rgba(10,23,48,.22);
+  --r-lg:28px; --r-md:18px; --r-sm:10px;
+  --font:"Onest",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font);color:var(--ink);background:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+::selection{background:var(--blue);color:#fff}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--ink-3)}
+h1,h2,h3{font-weight:800;letter-spacing:-.025em;line-height:1.02}
+h2{font-size:clamp(34px,5vw,60px);margin:14px 0 18px}
+.lede{font-size:clamp(17px,1.5vw,21px);color:var(--ink-2);max-width:620px;font-weight:500}
+.ac{color:var(--blue)}
+.gr{color:var(--green)}
+section{padding:clamp(72px,9vw,120px) 0;position:relative}
+.rule{height:1px;background:var(--line);margin:0}
+
+/* ——— girih lattice background ——— */
+.lattice{position:absolute;inset:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%230A1730' stroke-opacity='.075' stroke-width='1'%3E%3Cpath d='M48 4 92 48 48 92 4 48Z'/%3E%3Cpath d='M48 20 76 48 48 76 20 48Z'/%3E%3Cpath d='M0 0h96v96H0z'/%3E%3Cpath d='M48 0v96M0 48h96'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image:radial-gradient(ellipse 80% 70% at 60% 30%,#000 30%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 60% 30%,#000 30%,transparent 75%)}
+
+/* ——— header ——— */
+header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(10px);background:rgba(244,241,234,.78);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;font-size:20px;letter-spacing:-.02em}
+.brand img{width:36px;height:36px;border-radius:9px}
+.nav-links{display:flex;gap:26px;font-weight:600;font-size:15px;color:var(--ink-2)}
+.nav-links a{text-decoration:none;position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:var(--blue);transition:right .25s}
+.nav-links a:hover::after{right:0}
+.nav-right{display:flex;align-items:center;gap:12px}
+.lang{display:inline-flex;border:1px solid var(--line-2);border-radius:100px;padding:3px;font-family:var(--mono);font-size:12px}
+.lang button{border:0;background:transparent;padding:6px 12px;border-radius:100px;cursor:pointer;color:var(--ink-3);font:inherit;font-weight:600}
+.lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:100px;font-weight:700;text-decoration:none;border:1px solid transparent;transition:transform .15s,box-shadow .15s,background .15s;cursor:pointer;font-size:15px}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--ink);color:#fff;box-shadow:0 10px 30px rgba(10,23,48,.22)}
+.btn-primary:hover{background:#142445;box-shadow:0 14px 36px rgba(10,23,48,.28)}
+.btn-ghost{background:transparent;border-color:var(--line-2);color:var(--ink)}
+.btn-ghost:hover{background:rgba(10,23,48,.05)}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 12px 34px rgba(47,126,242,.35)}
+.btn-blue:hover{background:var(--blue-deep)}
+.btn svg{width:18px;height:18px}
+@media (max-width:820px){.nav-links{display:none}.nav .btn-primary{display:none}}
+
+/* ——— hero ——— */
+.hero{padding:clamp(56px,7vw,96px) 0 0;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,64px);align-items:center}
+.hero h1{font-size:clamp(46px,7.2vw,104px);font-weight:900;letter-spacing:-.04em;line-height:.95;margin:22px 0 22px}
+.hero h1 .ac{position:relative;white-space:nowrap}
+.hero h1 .ac::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.16em;background:linear-gradient(90deg,var(--blue),var(--green));opacity:.25;z-index:-1;border-radius:4px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 26px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--mono);font-size:12.5px;color:var(--ink-3)}
+.hero-meta b{color:var(--ink);font-weight:600}
+.pill{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:100px;background:#fff;border:1px solid var(--line);font-weight:700;font-size:13px;color:var(--ink-2);box-shadow:0 6px 18px rgba(10,23,48,.06)}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(34,169,78,.18);display:block}
+/* phone + rings */
+.stage{position:relative;display:grid;place-items:center;min-height:560px}
+.ring{position:absolute;border-radius:50%;border:1.5px solid var(--blue);opacity:0;animation:ring 4.5s ease-out infinite}
+.ring:nth-child(1){width:360px;height:360px;animation-delay:0s}
+.ring:nth-child(2){width:360px;height:360px;animation-delay:1.5s}
+.ring:nth-child(3){width:360px;height:360px;animation-delay:3s}
+@keyframes ring{0%{transform:scale(.6);opacity:.55}100%{transform:scale(1.9);opacity:0}}
+.phone{position:relative;width:min(300px,78vw);border-radius:44px;background:#0B1524;padding:11px;box-shadow:0 50px 100px -20px rgba(10,23,48,.45),0 0 0 1px rgba(255,255,255,.06) inset;transform:rotate(-3deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.stage:hover .phone{transform:rotate(0deg)}
+.phone::before{content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);width:84px;height:8px;border-radius:6px;background:#1e2b44;z-index:2}
+.phone img{border-radius:34px;width:100%;height:auto}
+.float{position:absolute;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;box-shadow:0 18px 40px rgba(10,23,48,.14);font-size:13px;font-weight:600;display:flex;gap:10px;align-items:center;animation:bob 6s ease-in-out infinite}
+.float .dot{width:10px;height:10px;border-radius:50%}
+.float small{display:block;font-family:var(--mono);font-size:11px;color:var(--ink-3);font-weight:500}
+.f1{top:12%;left:-4%;animation-delay:-1s}
+.f2{bottom:14%;right:-6%;animation-delay:-3s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.stage{min-height:0;margin-top:28px;padding:30px 0 10px}.f1{left:0}.f2{right:0}}
+
+/* ——— ticker ——— */
+.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ink);color:#C9D8EE;overflow:hidden;margin-top:clamp(40px,6vw,80px)}
+.ticker-track{display:flex;gap:56px;width:max-content;padding:14px 0;animation:tick 42s linear infinite;font-family:var(--mono);font-size:13px;white-space:nowrap}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-track span{display:inline-flex;gap:12px;align-items:center}
+.t-bad{color:#FF7B8E;font-weight:600}
+.t-ok{color:#5FD38C;font-weight:600}
+.t-dim{color:#7E93B3}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ——— features (numbered) ——— */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line-2);margin-top:40px}
+.feat{padding:34px 28px 38px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);position:relative;transition:background .25s}
+.feat:nth-child(3n){border-right:0}
+.feat:hover{background:#fff}
+.feat .n{font-family:var(--mono);font-size:13px;color:var(--ink-3);letter-spacing:.08em}
+.feat h3{font-size:22px;margin:16px 0 10px;letter-spacing:-.02em}
+.feat p{color:var(--ink-2);font-size:15.5px}
+.feat .ico{position:absolute;right:26px;top:30px;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(47,126,242,.1);color:var(--blue)}
+.feat:nth-child(even) .ico{background:rgba(34,169,78,.12);color:var(--green)}
+.feat .ico svg{width:20px;height:20px}
+@media (max-width:900px){.feat-grid{grid-template-columns:1fr 1fr}.feat:nth-child(3n){border-right:1px solid var(--line)}.feat:nth-child(2n){border-right:0}}
+@media (max-width:560px){.feat-grid{grid-template-columns:1fr}.feat{border-right:0!important}}
+
+/* ——— how it works ——— */
+.how{background:var(--paper-2)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,40px);margin-top:48px}
+.step{position:relative}
+.step .shot{border-radius:26px;overflow:hidden;background:#0B1524;padding:8px;box-shadow:0 30px 60px -20px rgba(10,23,48,.35);transform:translateY(0);transition:transform .35s}
+.step:hover .shot{transform:translateY(-6px)}
+.step .shot img{border-radius:20px;width:100%;height:auto;aspect-ratio:9/19;object-fit:cover;object-position:top}
+.step .num{position:absolute;top:-14px;left:-10px;width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-weight:600;z-index:2;box-shadow:0 8px 20px rgba(10,23,48,.25)}
+.step h3{font-size:21px;margin:22px 0 8px}
+.step p{color:var(--ink-2);font-size:15px}
+.step.danger .num{background:var(--anor)}
+.step.safe .num{background:var(--green)}
+@media (max-width:820px){.steps{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}}
+
+/* ——— compare ——— */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
+.cmp{border-radius:var(--r-lg);padding:32px;border:1px solid var(--line)}
+.cmp.us{background:var(--ink);color:#fff;border-color:transparent}
+.cmp h3{font-size:20px;margin-bottom:18px}
+.cmp ul{list-style:none;display:grid;gap:12px}
+.cmp li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px}
+.cmp li svg{width:20px;height:20px;flex:none;margin-top:2px}
+.cmp.us li{color:#DCE6F5}
+.cmp.them{background:#fff;color:var(--ink-2)}
+@media (max-width:760px){.compare{grid-template-columns:1fr}}
+
+/* ——— trust ——— */
+.trust-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(20px,4vw,48px);align-items:stretch;margin-top:40px}
+.cert{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(26px,3.5vw,44px);position:relative;overflow:hidden}
+.cert::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(34,169,78,.18),transparent 70%)}
+.cert .no{font-family:var(--mono);font-size:clamp(34px,4.5vw,56px);font-weight:600;letter-spacing:-.02em;margin:10px 0 6px;color:var(--ink)}
+.cert .who{color:var(--ink-2);margin:14px 0 22px;font-size:15.5px}
+.cert dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;font-size:14px}
+.cert dt{color:var(--ink-3);font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding-top:3px}
+.cert dd{font-weight:600}
+.author{background:linear-gradient(160deg,#1D3A6E,#0A1730);color:#fff;border-radius:var(--r-lg);padding:clamp(26px,3.5vw,44px);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.author::before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.08' stroke-width='1'%3E%3Cpath d='M48 4 92 48 48 92 4 48Z'/%3E%3Cpath d='M48 20 76 48 48 76 20 48Z'/%3E%3C/g%3E%3C/svg%3E")}
+.author > *{position:relative}
+.author .big{font-size:clamp(56px,8vw,96px);font-weight:900;letter-spacing:-.05em;line-height:.9}
+.author .big small{font-size:.32em;font-weight:600;letter-spacing:0;color:#9DB8E6;margin-left:8px;vertical-align:baseline}
+.author p{color:#C9D8EE;margin-top:18px;font-size:15.5px}
+.author .tag{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:#9DB8E6;text-transform:uppercase}
+@media (max-width:860px){.trust-grid{grid-template-columns:1fr}}
+
+/* ——— download ——— */
+.dl{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.dl .lattice{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.07' stroke-width='1'%3E%3Cpath d='M48 4 92 48 48 92 4 48Z'/%3E%3Cpath d='M48 20 76 48 48 76 20 48Z'/%3E%3Cpath d='M0 0h96v96H0z'/%3E%3C/g%3E%3C/svg%3E");mask-image:radial-gradient(ellipse 70% 80% at 30% 50%,#000 20%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 80% at 30% 50%,#000 20%,transparent 75%)}
+.dl .eyebrow{color:#9DB8E6}.dl .eyebrow::before{background:#9DB8E6}
+.dl h2{color:#fff}
+.dl .lede{color:#C9D8EE}
+.dl-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,5vw,64px);align-items:center}
+.dl-meta{display:flex;flex-wrap:wrap;gap:10px 26px;font-family:var(--mono);font-size:13px;color:#9DB8E6;margin:22px 0 30px}
+.dl-meta b{color:#fff;font-weight:600}
+.dl .btn-ghost{border-color:rgba(255,255,255,.28);color:#fff}
+.dl .btn-ghost:hover{background:rgba(255,255,255,.08)}
+.qr{background:#fff;border-radius:var(--r-lg);padding:22px;display:grid;gap:14px;justify-items:center;color:var(--ink);max-width:320px;margin-left:auto;box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+.qr img{width:220px;height:220px;image-rendering:pixelated}
+.qr p{font-size:13px;color:var(--ink-2);text-align:center;font-weight:600}
+.install{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ins{border:1px solid rgba(255,255,255,.14);border-radius:var(--r-md);padding:20px;background:rgba(255,255,255,.04)}
+.ins .k{font-family:var(--mono);font-size:12px;color:#9DB8E6;letter-spacing:.1em}
+.ins p{margin-top:8px;font-size:14.5px;color:#DCE6F5}
+@media (max-width:860px){.dl-grid{grid-template-columns:1fr}.qr{margin:0 auto}.install{grid-template-columns:1fr}}
+
+/* ——— honest ——— */
+.honest{border:1px dashed var(--line-2);border-radius:var(--r-lg);padding:clamp(22px,3vw,36px);display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;margin-top:36px;background:#fff}
+.honest .sym{width:48px;height:48px;border-radius:14px;background:rgba(194,20,61,.1);color:var(--anor);display:grid;place-items:center}
+.honest ul{list-style:none;display:grid;gap:8px;color:var(--ink-2);font-size:15.5px}
+.honest li::before{content:"— ";color:var(--ink-3)}
+@media (max-width:560px){.honest{grid-template-columns:1fr}}
+
+/* ——— faq ——— */
+.faq{max-width:820px;margin:40px auto 0}
+details{border-top:1px solid var(--line);padding:20px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;font-weight:700;font-size:18px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary .plus{width:28px;height:28px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;flex:none;transition:transform .25s,background .25s}
+details[open] summary .plus{transform:rotate(45deg);background:var(--ink);color:#fff;border-color:var(--ink)}
+details p{margin-top:12px;color:var(--ink-2);font-size:15.5px;max-width:700px}
+
+/* ——— footer ——— */
+footer{padding:48px 0 40px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-3)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;align-items:center}
+.foot a{text-decoration:none;font-weight:600;color:var(--ink-2)}
+.foot a:hover{color:var(--blue)}
+.foot .links{display:flex;gap:22px;flex-wrap:wrap}
+
+/* ——— reveal ——— */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.hero .rv{transition-delay:var(--d,0s)}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  .ring,.float,.ticker-track{animation:none}
+  .ring{display:none}
+  html{scroll-behavior:auto}
+}
 </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap">
-    <div class="badge">UzGuard · Antivirus</div>
-    <h1>Maxfiylik siyosati · Политика конфиденциальности</h1>
-    <p>UzGuard — Android qurilmalar uchun oflayn APK antivirus.</p>
-    <div class="meta">
-      <span><strong>Ilova / Приложение:</strong> UzGuard</span>
-      <span><strong>Paket / Пакет:</strong> com.kiberqalqon</span>
-      <span><strong>Kuchga kiradi / Дата вступления:</strong> 16.08.2026</span>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><img src="assets/logo-192.png" alt="UzGuard"><span>UzGuard</span></a>
+    <nav class="nav-links">
+      <a href="#imkon" data-i18n="nav_features">Imkoniyatlar</a>
+      <a href="#qanday" data-i18n="nav_how">Qanday ishlaydi</a>
+      <a href="#ishonch" data-i18n="nav_trust">Ishonch</a>
+      <a href="#savol" data-i18n="nav_faq">Savollar</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Til / Язык">
+        <button type="button" data-lang="uz" aria-pressed="true">UZ</button>
+        <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+      </div>
+      <a class="btn btn-primary" href="#yuklab" data-i18n="nav_dl">Yuklab olish</a>
     </div>
   </div>
 </header>
 
-<div class="langbar">
-  <span class="lbl">Til / Язык:</span>
-  <button id="btn-uz" aria-pressed="true" onclick="setLang('uz')">O‘zbekcha</button>
-  <button id="btn-ru" aria-pressed="false" onclick="setLang('ru')">Русский</button>
-</div>
-
-<main>
-<div class="wrap">
-
-<!-- ==================== UZBEK ==================== -->
-<section class="doc active" id="doc-uz" lang="uz">
-
-  <p class="lead">Ushbu siyosat UzGuard ilovasi (paket <code>com.kiberqalqon</code>) qanday ma'lumotlarni yig'ishi, nima uchun ishlatishi, kim bilan ulashishi va siz buni qanday boshqarishingizni to‘liq tushuntiradi. <strong>Hech narsa yashirilmagan.</strong></p>
-
-  <div class="card accent">
-    <strong>Bir jumlada:</strong> UzGuard barcha tekshiruvlarni telefoningizning <strong>o‘zida</strong> bajaradi. Qurilmadan tashqariga ma'lumot chiqishi FAQAT ikkita <em>ixtiyoriy</em>, standart holatda <em>o‘chirilgan</em> funksiya orqali sodir bo‘ladi. Biz ma'lumotlaringizni <strong>sotmaymiz</strong> va reklama tarmoqlariga bermaymiz.
+<main id="top">
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="lattice"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill rv" style="--d:.0s"><i></i><span data-i18n="hero_pill">Oflayn · Maxfiy · Bepul</span></span>
+      <h1 class="rv" style="--d:.08s" data-i18n="hero_h1">Telefoningiz<br><span class="ac">himoya ostida.</span></h1>
+      <p class="lede rv" style="--d:.16s" data-i18n="hero_lede">UzGuard — O'zbekiston uchun yaratilgan oflayn antivirus. Zararli APK fayllarni siz o'rnatishdan <b>oldin</b>, internetsiz, telefonning o'zida aniqlaydi.</p>
+      <div class="hero-cta rv" style="--d:.24s">
+        <a class="btn btn-blue" href="#yuklab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span data-i18n="hero_cta1">APK yuklab olish</span></a>
+        <a class="btn btn-ghost" href="#qanday" data-i18n="hero_cta2">Qanday ishlaydi →</a>
+      </div>
+      <div class="hero-meta rv" style="--d:.32s">
+        <span data-i18n="meta_ver"><b>v8.7</b> · 10,4 MB</span>
+        <span data-i18n="meta_android">Android <b>7.0+</b></span>
+        <span data-i18n="meta_cert">Davlat reyestri <b>DGU 68288</b></span>
+        <span data-i18n="meta_lang">O'zbek · Русский</span>
+      </div>
+    </div>
+    <div class="stage rv" style="--d:.2s" aria-hidden="true">
+      <span class="ring"></span><span class="ring"></span><span class="ring"></span>
+      <div class="phone"><img src="assets/screens/dash.webp" alt="" width="540" height="1200" loading="eager"></div>
+      <div class="float f1"><span class="dot" style="background:var(--green)"></span><div><span data-i18n="float1">Himoya yoqilgan</span><small data-i18n="float1s">Yuklamalar · Telegram kuzatilmoqda</small></div></div>
+      <div class="float f2"><span class="dot" style="background:var(--anor)"></span><div><span data-i18n="float2">Xavfli APK bloklandi</span><small class="mono">VIDEO.mp4.apk · ZIP-shifr</small></div></div>
+    </div>
   </div>
 
-  <div class="toc">
-    <strong>Bo‘limlar</strong>
-    <ol>
-      <li>Asosiy prinsip</li>
-      <li>Qurilmada saqlanadigan ma'lumotlar</li>
-      <li>Himoya bazasini yangilash (texnik trafik)</li>
-      <li>Jamoatchilik xavfsizligi ulashishi (ixtiyoriy)</li>
-      <li>Guruhga qo‘shilish (ixtiyoriy)</li>
-      <li>Shaxsiy Telegram telemetriya (ixtiyoriy)</li>
-      <li>O‘z-o‘zini yangilash</li>
-      <li>Hech qachon yig‘ilmaydigan ma'lumotlar</li>
-      <li>Ma'lumot bilan kim ishlaydi (ulashish)</li>
-      <li>Saqlash muddati</li>
-      <li>Sizning nazoratingiz / opt-out</li>
-      <li>Xavfsizlik</li>
-      <li>Bolalar</li>
-      <li>Xalqaro o‘tkazish</li>
-      <li>Siyosatni yangilash</li>
-      <li>Aloqa</li>
-    </ol>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span><span class="t-dim">scan</span> Click_yangilash.apk <span class="t-bad">XAVFLI</span> <span class="t-dim">soxta yangilanish · bank-troyan</span></span>
+      <span><span class="t-dim">scan</span> VIDEO.20.01.2026.mp4.apk <span class="t-bad">XAVFLI</span> <span class="t-dim">ikki kengaytma · ZIP-shifrlangan</span></span>
+      <span><span class="t-dim">scan</span> Telegram.apk <span class="t-ok">XAVFSIZ</span> <span class="t-dim">rasmiy imzo</span></span>
+      <span><span class="t-dim">scan</span> TAKLIFNOMA.apk <span class="t-bad">XAVFLI</span> <span class="t-dim">SMS o'qish + qurilma admin</span></span>
+      <span><span class="t-dim">scan</span> toy_video.apk <span class="t-bad">XAVFLI</span> <span class="t-dim">Ajina.Banker belgilari</span></span>
+      <span><span class="t-dim">scan</span> Payme.apk <span class="t-ok">XAVFSIZ</span> <span class="t-dim">Play Market</span></span>
+      <span><span class="t-dim">scan</span> bank.apk <span class="t-bad">XAVFLI</span> <span class="t-dim">soxta bank · ruxsat kombinatsiyasi</span></span>
+      <!-- duplicate for seamless loop -->
+      <span><span class="t-dim">scan</span> Click_yangilash.apk <span class="t-bad">XAVFLI</span> <span class="t-dim">soxta yangilanish · bank-troyan</span></span>
+      <span><span class="t-dim">scan</span> VIDEO.20.01.2026.mp4.apk <span class="t-bad">XAVFLI</span> <span class="t-dim">ikki kengaytma · ZIP-shifrlangan</span></span>
+      <span><span class="t-dim">scan</span> Telegram.apk <span class="t-ok">XAVFSIZ</span> <span class="t-dim">rasmiy imzo</span></span>
+      <span><span class="t-dim">scan</span> TAKLIFNOMA.apk <span class="t-bad">XAVFLI</span> <span class="t-dim">SMS o'qish + qurilma admin</span></span>
+      <span><span class="t-dim">scan</span> toy_video.apk <span class="t-bad">XAVFLI</span> <span class="t-dim">Ajina.Banker belgilari</span></span>
+      <span><span class="t-dim">scan</span> Payme.apk <span class="t-ok">XAVFSIZ</span> <span class="t-dim">Play Market</span></span>
+      <span><span class="t-dim">scan</span> bank.apk <span class="t-bad">XAVFLI</span> <span class="t-dim">soxta bank · ruxsat kombinatsiyasi</span></span>
+    </div>
   </div>
-
-  <h2>1. Asosiy prinsip</h2>
-  <p>UzGuard — <strong>oflayn skaner</strong>. APK fayllar imzo, ruxsatlar va zararli-kod signaturalari bo‘yicha to‘g‘ridan-to‘g‘ri qurilmangizda tahlil qilinadi. Skan natijalari va sozlamalar <strong>faqat sizning telefoningizda</strong> saqlanadi.</p>
-  <p>Qurilmaga oid ma'lumot tashqariga FAQAT siz o‘zingiz yoqqan ixtiyoriy funksiyalar orqali chiqadi:</p>
-  <ul>
-    <li><strong>Jamoatchilik xavfsizligi ulashishi</strong> (4-bo‘lim) <span class="pill opt">IXTIYORIY</span> <span class="pill off">standart: O‘CHIQ</span></li>
-    <li><strong>Shaxsiy Telegram telemetriya</strong> (6-bo‘lim) <span class="pill opt">IXTIYORIY</span> <span class="pill off">standart: O‘CHIQ</span></li>
-  </ul>
-  <p>Bulardan tashqari, ilova faqat himoya bazalarini <strong>yuklab oladi</strong> (3-bo‘lim) — bu so‘rovlar shaxsiy ma'lumot yubormaydi.</p>
-
-  <h2>2. Qurilmada saqlanadigan ma'lumotlar <span class="pill local">FAQAT TELEFONDA</span></h2>
-  <p>Quyidagilar telefonning himoyalangan ichki xotirasida saqlanadi, boshqa ilovalar uchun ochiq emas:</p>
-  <ul>
-    <li>Skan tarixi (oxirgi ~200 yozuv): APK nomi, yo‘li, verdict (xavfsiz / shubhali / xavfli), sabab, vaqt</li>
-    <li>Statistika hisoblagichlari: jami skan, bloklangan, xavfsiz</li>
-    <li>Sozlamalar: til, mavzu, sezgirlik darajasi, funksiya kalitlari</li>
-    <li>Karantin: xavfli deb topilgan fayllar — ilovaning shifrlangan ichki papkasida</li>
-  </ul>
-  <p>Ilovani o‘chirsangiz, bu ma'lumotlarning hammasi birga o‘chadi.</p>
-
-  <h2>3. Himoya bazasini yangilash (texnik trafik)</h2>
-  <p>Antivirus dolzarb bo‘lishi uchun ilova vaqti-vaqti bilan UzGuard markaziy serveridan (xavfsiz HTTPS orqali) quyidagilarni <strong>yuklab oladi</strong>:</p>
-  <ul>
-    <li>Virus qora ro‘yxati (yangi tahdidlarning SHA-256 hash va paket nomlari) — raqamli imzo bilan tekshiriladi</li>
-    <li>Himoya sozlamalari (skaner chegaralari)</li>
-    <li>Yangiliklar / xavfsizlik e'lonlari lentasi</li>
-  </ul>
-  <p>Bu so‘rovlar faqat YUKLAB OLISH — ularda skan natijalari, fayllar yoki shaxsiy ma'lumot <strong>yuborilmaydi</strong>. Har qanday internet so‘rovida bo‘lgani kabi, server qurilmaning IP-manzilini ko‘radi — bu texnik zarurat.</p>
-
-  <h2>4. Jamoatchilik xavfsizligi ulashishi <span class="pill opt">IXTIYORIY</span> <span class="pill off">standart: O‘CHIQ</span></h2>
-  <p>Yoqsangiz, qurilmalardan kelgan xavf signallari markaziy bazaga yig‘iladi va u yerdan barcha foydalanuvchilarga himoya signaturalari tarqatiladi (Kaspersky Security Network, ESET LiveGrid kabi standart amaliyot). Bu funksiya rozilik ekranidagi 3-galochka orqali yoqiladi va istalgan vaqtda <em>Sozlamalar → “Jamoatchilik ulashish”</em> dan o‘chiriladi. O‘chiq bo‘lsa ham skaner, ogohlantirishlar va himoya <strong>to‘liq</strong> ishlaydi.</p>
-
-  <h3>(a) Markaziy bulut monitoringiga (Vercel + Supabase)</h3>
-  <p>Har bir skanda (statistika va xaritadagi yashil nuqtalar uchun xavfsiz natijalar ham) yuboriladi:</p>
-  <div class="keyval">
-    <div class="row"><div class="k">Anonim ID</div><div>Tasodifiy UUID (qurilma tokeni). Bu IMEI, seriya raqami yoki telefon raqami <strong>EMAS</strong>.</div></div>
-    <div class="row"><div class="k">Qurilma</div><div>Model (masalan “Samsung SM-A536E”), Android versiyasi, ilova versiyasi, qaysi himoyalar yoqilgani</div></div>
-    <div class="row"><div class="k">Skan meta-ma'lumoti</div><div>APK SHA-256 hashi, paket nomi, yorlig‘i, verdict, risk ball, sabablar, xavfli ruxsatlar ro‘yxati</div></div>
-    <div class="row"><div class="k">Joylashuv (GPS)</div><div>FAQAT siz joylashuv ruxsatini bergan bo‘lsangiz. Markaziy himoya xaritasida qurilma va hududiy tahdidlarni ko‘rsatish uchun. <strong>Fon (background) kuzatuvi YO‘Q</strong> — koordinata faqat ilova ishlayotganda o‘qiladi va ~6 xona aniqlikka yumaloqlanadi. Ruxsat bermasangiz — koordinata umuman yuborilmaydi.</div></div>
-    <div class="row"><div class="k">IP-manzil</div><div>Server har so‘rovda IP ko‘radi; GPS bo‘lmasa undan faqat shahar darajasida taxminiy joy aniqlaydi</div></div>
-    <div class="row"><div class="k">XAVFLI/SHUBHALI APK fayl</div><div>FAQAT verdict xavfli yoki shubhali bo‘lganda — faylning o‘zi (50 MB gacha) o‘rganish va yangi signaturalar yaratish uchun himoyalangan saqlovga yuklanadi. <strong>XAVFSIZ APK fayllari HECH QACHON yuklanmaydi.</strong></div></div>
-  </div>
-  <p>Yoqilgan bo‘lsa, egangiz paneldan qurilmaga <em>qayta-skan</em> buyrug‘i yoki xabar yuborishi mumkin (bir martalik, at-most-once). Bu ham faqat shu funksiya yoqilganda ishlaydi.</p>
-
-  <h3>(b) UzGuard jamoasining Telegram botiga (api.telegram.org)</h3>
-  <p>FAQAT xavfli yoki shubhali APK aniqlanganda: APK SHA-256 hashi, paket nomi, verdict, aniqlangan signatura (sabab), qurilma ishlab chiqaruvchisi va modeli, Android versiyasi, hamda APK faylning o‘zi (50 MB gacha).</p>
-
-  <h3>(c) Ilova xatosi (crash) yuz berganda</h3>
-  <p>Dasturchi xatoni tuzatishi uchun: stacktrace (kod xatosi joyi), qurilma modeli, Android versiyasi, UzGuard versiyasi va vaqt.</p>
-
-  <h2>5. Guruhga qo‘shilish <span class="pill opt">IXTIYORIY — o‘zingiz kiritasiz</span></h2>
-  <p>Agar egangiz sizga guruh <strong>kodi</strong> bergan bo‘lsa (masalan oila yoki tashkilot fleti), siz ilovaga o‘zingiz <strong>ism, familiya va telefon raqamingizni</strong> kiritib guruhga qo‘shilishingiz mumkin. Bu — yagona holat ismingiz va telefon raqamingiz serverga (anonim qurilma tokeni bilan birga) yuborilishi mumkin, va u faqat siz shu maydonlarni to‘ldirib “Qo‘shilish”ni bosganingizda sodir bo‘ladi. Kod kiritmasangiz — bu ma'lumotlar hech qachon so‘ralmaydi va yuborilmaydi.</p>
-
-  <h2>6. Shaxsiy Telegram telemetriya <span class="pill opt">IXTIYORIY</span> <span class="pill off">standart: O‘CHIQ</span></h2>
-  <p>Bu funksiya hodisalarni <strong>O‘ZINGIZNING</strong> Telegram botingizga yuboradi (masalan, ota-ona farzand telefonini kuzatishi uchun). U yashirin Diagnostika ekranida <em>o‘zingizning</em> bot tokeningiz va chat_id’ni kiritganingizdagina ishlaydi.</p>
-  <p>Yoqilgan bo‘lsa yuboriladi: skaner natijalari (fayl nomi, hajmi, verdict, sabab, manba — telegram/whatsapp/yuklab olish), yangi o‘rnatilgan ilovalar (paket nomi, yorlig‘i), ilova ishga tushishi/to‘xtashi, crash log’lari, qurilma ma'lumotlari (ishlab chiqaruvchi, model, Android versiyasi) va siz bosgan test xabarlari.</p>
-  <p><strong>Muhim:</strong> bu ma'lumot FAQAT siz kiritgan botga boradi — dasturchiga emas. Uchinchi tomon analitika yoki reklama tarmoqlari ishlatilmaydi.</p>
-
-  <h2>7. O‘z-o‘zini yangilash</h2>
-  <p>Ilova Play Store’dan tashqarida tarqatilganda, yangilanishni imzolangan konfiguratsiyadagi havoladan yuklab olishi mumkin. Yangi APK uch qavat tekshiruvdan o‘tadi (imzolangan metadata, SHA-256 mosligi, sertifikat mosligi), so‘ng o‘rnatish sizning bir tapingiz bilan tizim o‘rnatuvchisi orqali amalga oshadi. Bu jarayonda shaxsiy ma'lumot yuborilmaydi — faqat APK fayl yuklab olinadi. (Play Store orqali o‘rnatsangiz, yangilanish Play orqali keladi.)</p>
-
-  <h2>8. Hech qachon yig‘ilmaydigan ma'lumotlar</h2>
-  <div class="never">
-    <h3>Yuqoridagi funksiyalar YOQILGAN bo‘lsa ham HECH QACHON:</h3>
-    <ul>
-      <li>Xavfsiz APK fayllarining o‘zi (faqat meta-ma'lumoti statistika uchun ketadi)</li>
-      <li>Shaxsiy fayllar (rasm, video, hujjatlar), kontaktlar, SMS, chat tarixi</li>
-      <li>Internet-brauzer tarixi, parollar, akkaunt token’lari</li>
-      <li>IMEI, seriya raqami, MAC-manzil</li>
-      <li>(Bulutga) qurilmadagi boshqa ilovalar ro‘yxati</li>
-    </ul>
-    <p style="margin-bottom:2px">Ism va telefon raqami faqat 5-bo‘limdagi ixtiyoriy “Guruhga qo‘shilish”da, siz o‘zingiz kiritganda yuboriladi.</p>
-  </div>
-
-  <h2>9. Ma'lumot bilan kim ishlaydi (ulashish)</h2>
-  <p>Biz ma'lumotlaringizni hech kimga <strong>sotmaymiz</strong>. Reklama tarmoqlari va uchinchi tomon analitika SDK’lari (Firebase, Crashlytics, Google Analytics) <strong>ishlatilmaydi</strong>. Ixtiyoriy funksiyalar yoqilganda ma'lumot faqat quyidagi infratuzilma bilan ulashiladi:</p>
-  <ul>
-    <li><strong>UzGuard bulut infratuzilmasi</strong> — Vercel (hosting) va Supabase (baza/saqlov) sub-protsessor sifatida</li>
-    <li><strong>Telegram</strong> — jamoa boti va (siz yoqsangiz) shaxsiy telemetriya kanallari uchun (telegram.org/privacy)</li>
-  </ul>
-
-  <h2>10. Saqlash muddati</h2>
-  <ul>
-    <li><strong>Qurilmadagi ma'lumot:</strong> ilovani o‘chirg'ancha yoki tarixni o‘zingiz tozalaguncha saqlanadi</li>
-    <li><strong>Bulut telemetriyasi va tahdid xaritasi:</strong> xavfsizlik xizmati ishlashi uchun zarur muddat davomida saqlanadi</li>
-    <li><strong>Zararli APK namunalari:</strong> signatura ishlab chiqish uchun saqlanadi</li>
-    <li>Yuborilgan ma'lumotni o‘chirtirishni istasangiz — quyidagi email orqali murojaat qiling; imkoni boricha o‘chiramiz</li>
-  </ul>
-
-  <h2>11. Sizning nazoratingiz / opt-out</h2>
-  <ul>
-    <li><strong>Jamoatchilik ulashishini</strong> yoqish/o‘chirish: Sozlamalar → “Jamoatchilik ulashish”</li>
-    <li><strong>Shaxsiy Telegram telemetriyani</strong> o‘chirish: Diagnostika → Telegram telemetriya → galochkani olib tashlash</li>
-    <li><strong>Joylashuv:</strong> Android tizim sozlamalaridan ilova uchun ruxsatni istalgan vaqtda qaytarib olish</li>
-    <li><strong>Skan tarixini tozalash:</strong> Sozlamalar → “Tarixni tozalash”</li>
-    <li><strong>Rozilikni butunlay bekor qilish:</strong> Sozlamalar → “Rozilikni qaytarib olish”</li>
-    <li><strong>Ma'lumotni o‘chirtirish so‘rovi:</strong> quyidagi email</li>
-    <li><strong>Ilovani o‘chirish</strong> — barcha lokal ma'lumot yo‘qoladi</li>
-  </ul>
-
-  <h2>12. Xavfsizlik</h2>
-  <ul>
-    <li>Barcha bulut aloqalari faqat HTTPS orqali; server sertifikati ilovaga mahkamlangan (certificate pinning)</li>
-    <li>Yuklab olinadigan bazalar raqamli imzo bilan tekshiriladi — soxta baza qabul qilinmaydi</li>
-    <li>Qurilma identifikatori — tasodifiy UUID; so‘rovlar qurilmaga xos kalit bilan imzolanadi (HMAC)</li>
-    <li>IMEI, seriya raqami, telefon raqami kabi haqiqiy identifikatorlar umuman ishlatilmaydi</li>
-  </ul>
-
-  <h2>13. Bolalar</h2>
-  <p>UzGuard 13 yoshgacha bo‘lgan bolalarga mo‘ljallanmagan va ulardan bila turib ma'lumot yig‘ilmaydi. Agar siz ota-ona bo‘lib, 13 yoshgacha bo‘lgan bolangiz ilovadan foydalanayotganini bilsangiz — ilovani o‘chiring yoki biz bilan bog‘laning.</p>
-
-  <h2>14. Xalqaro o‘tkazish</h2>
-  <p>Ixtiyoriy funksiyalar yoqilganda, ma'lumotlar O‘zbekistondan tashqarida joylashgan serverlarga o‘tkazilishi mumkin: bulut infratuzilmasi (Vercel / Supabase, xalqaro) va Telegram serverlari.</p>
-
-  <h2>15. Siyosatni yangilash</h2>
-  <p>Bu siyosat vaqti-vaqti bilan yangilanishi mumkin. Sezilarli o‘zgarishlarda ilovani ochganingizda rozilik qayta so‘raladi va bu sahifadagi “Kuchga kiradi” sanasi yangilanadi.</p>
-
-  <h2>16. Aloqa</h2>
-  <p>Maxfiylik bo‘yicha savollar, ma'lumotga kirish yoki o‘chirtirish so‘rovlari uchun:</p>
-  <p><a class="cta" href="https://t.me/zimdevuz">@zimdevuz</a></p>
-
 </section>
 
-<!-- ==================== RUSSIAN ==================== -->
-<section class="doc" id="doc-ru" lang="ru">
+<!-- ============ FEATURES ============ -->
+<section id="imkon">
+  <div class="wrap">
+    <div class="eyebrow rv" data-i18n="feat_eyebrow">Imkoniyatlar</div>
+    <h2 class="rv" data-i18n="feat_h2">Bank-troyanlar Telegram'dan keladi.<br><span class="ac">UzGuard ularni eshikda to'xtatadi.</span></h2>
+    <p class="lede rv" data-i18n="feat_lede">Firibgarlar zararli ilovalarni «video», «taklifnoma» yoki «yangilanish» niqobida yuboradi. Biz aynan shu hujumlarga qarshi qurilganmiz.</p>
 
-  <p class="lead">Настоящая политика полностью объясняет, какие данные собирает приложение UzGuard (пакет <code>com.kiberqalqon</code>), зачем, с кем они делятся и как вы этим управляете. <strong>Ничего не скрыто.</strong></p>
-
-  <div class="card accent">
-    <strong>В одном предложении:</strong> UzGuard выполняет все проверки <strong>на самом устройстве</strong>. Данные покидают устройство ТОЛЬКО через две <em>необязательные</em> функции, которые по умолчанию <em>выключены</em>. Мы <strong>не продаём</strong> ваши данные и не передаём их рекламным сетям.
+    <div class="feat-grid">
+      <div class="feat rv"><span class="n">01</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V6l-8-3-8 3v6c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span><h3 data-i18n="f1h">O'rnatishdan oldin tekshiradi</h3><p data-i18n="f1p">Yuklamalar, Telegram va boshqa papkalardagi yangi APK fayllarni avtomatik kuzatadi. Xavfli fayl — o'rnatilmasidan oldin ogohlantiradi.</p></div>
+      <div class="feat rv"><span class="n">02</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.4 5.6a9 9 0 1 1-12.8 0M12 2v10"/></svg></span><h3 data-i18n="f2h">To'liq oflayn</h3><p data-i18n="f2p">Tahlil telefonning o'zida bajariladi. Faylni hech qayerga yuklash shart emas, internet talab qilinmaydi.</p></div>
+      <div class="feat rv"><span class="n">03</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/></svg></span><h3 data-i18n="f3h">Ajina.Banker, RoundRift…</h3><p data-i18n="f3p">Markaziy Osiyoga qaratilgan bank-troyan oilalarining belgilarini taniydi: soxta yangilanishlar, ZIP-shifrlangan APK, SMS o'qish + qurilma admin kombinatsiyasi.</p></div>
+      <div class="feat rv"><span class="n">04</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 9h10M7 13h6"/></svg></span><h3 data-i18n="f4h">Sodda o'zbek tilida</h3><p data-i18n="f4p">Natija texnik atamalarda emas — nima xavfli va nima qilish kerakligi oddiy so'zlar bilan aytiladi.</p></div>
+      <div class="feat rv"><span class="n">05</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></span><h3 data-i18n="f5h">Havola va QR tekshiruvi</h3><p data-i18n="f5p">Telegram yoki SMS'dan kelgan havolani ochishdan oldin baholaydi. Soxta bank ilovalarini haqiqiy brenddan ajratadi.</p></div>
+      <div class="feat rv"><span class="n">06</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><h3 data-i18n="f6h">Maxfiylik birinchi o'rinda</h3><p data-i18n="f6p">Ro'yxatdan o'tish yo'q, Google akkaunt shart emas. Telemetriya faqat siz yoqsangiz — va u ham anonim.</p></div>
+    </div>
   </div>
-
-  <div class="toc">
-    <strong>Разделы</strong>
-    <ol>
-      <li>Основной принцип</li>
-      <li>Данные, хранящиеся на устройстве</li>
-      <li>Обновление баз защиты (техтрафик)</li>
-      <li>Обмен для общей безопасности (опция)</li>
-      <li>Присоединение к группе (опция)</li>
-      <li>Личная Telegram-телеметрия (опция)</li>
-      <li>Самообновление</li>
-      <li>Что не собирается никогда</li>
-      <li>С кем мы делимся данными</li>
-      <li>Срок хранения</li>
-      <li>Ваш контроль / отказ</li>
-      <li>Безопасность</li>
-      <li>Дети</li>
-      <li>Международная передача</li>
-      <li>Изменения политики</li>
-      <li>Контакты</li>
-    </ol>
-  </div>
-
-  <h2>1. Основной принцип</h2>
-  <p>UzGuard — это <strong>офлайн-сканер</strong>. APK-файлы анализируются прямо на вашем устройстве (подпись, разрешения, сигнатуры вредоносного кода). Результаты сканирования и настройки хранятся <strong>только на вашем телефоне</strong>.</p>
-  <p>Данные, связанные с устройством, покидают его ТОЛЬКО через включённые вами необязательные функции:</p>
-  <ul>
-    <li><strong>Обмен для общей безопасности</strong> (раздел 4) <span class="pill opt">ОПЦИЯ</span> <span class="pill off">по умолчанию: ВЫКЛ</span></li>
-    <li><strong>Личная Telegram-телеметрия</strong> (раздел 6) <span class="pill opt">ОПЦИЯ</span> <span class="pill off">по умолчанию: ВЫКЛ</span></li>
-  </ul>
-  <p>Кроме этого приложение только <strong>скачивает</strong> базы защиты (раздел 3) — эти запросы не отправляют личных данных.</p>
-
-  <h2>2. Данные, хранящиеся на устройстве <span class="pill local">ТОЛЬКО НА ТЕЛЕФОНЕ</span></h2>
-  <p>Хранится во внутренней защищённой памяти телефона, недоступно другим приложениям:</p>
-  <ul>
-    <li>История сканирований (~200 последних записей): имя APK, путь, вердикт (безопасно / подозрительно / опасно), причина, время</li>
-    <li>Счётчики статистики: всего проверок, заблокировано, безопасно</li>
-    <li>Настройки: язык, тема, уровень чувствительности, переключатели функций</li>
-    <li>Карантин: файлы, признанные опасными — в зашифрованной внутренней папке приложения</li>
-  </ul>
-  <p>При удалении приложения все эти данные удаляются вместе с ним.</p>
-
-  <h2>3. Обновление баз защиты (технический трафик)</h2>
-  <p>Чтобы антивирус оставался актуальным, приложение периодически <strong>скачивает</strong> с центрального сервера UzGuard (по защищённому HTTPS):</p>
-  <ul>
-    <li>Чёрный список вирусов (SHA-256 хэши и имена пакетов новых угроз) — проверяется цифровой подписью</li>
-    <li>Настройки защиты (пороги сканера)</li>
-    <li>Ленту новостей / уведомлений безопасности</li>
-  </ul>
-  <p>Это только СКАЧИВАНИЕ — результаты сканирования, файлы или личные данные в этих запросах <strong>не отправляются</strong>. Как при любом интернет-запросе, сервер видит IP-адрес устройства — это техническая необходимость.</p>
-
-  <h2>4. Обмен для общей безопасности <span class="pill opt">ОПЦИЯ</span> <span class="pill off">по умолчанию: ВЫКЛ</span></h2>
-  <p>Если включить, сигналы об угрозах с устройств собираются в центральную базу, откуда сигнатуры защиты раздаются всем пользователям (стандартная практика — Kaspersky Security Network, ESET LiveGrid). Функция включается третьей галочкой на экране согласия и в любой момент отключается в <em>Настройки → «Обмен для сообщества»</em>. Даже если выключено, сканер, предупреждения и защита работают <strong>полностью</strong>.</p>
-
-  <h3>(a) В центральный облачный мониторинг (Vercel + Supabase)</h3>
-  <p>При каждом сканировании (включая безопасные результаты — для статистики и зелёных точек на карте) отправляется:</p>
-  <div class="keyval">
-    <div class="row"><div class="k">Анонимный ID</div><div>Случайный UUID (токен устройства). Это <strong>НЕ</strong> IMEI, серийный номер или номер телефона.</div></div>
-    <div class="row"><div class="k">Устройство</div><div>Модель (например «Samsung SM-A536E»), версия Android, версия приложения, какие средства защиты включены</div></div>
-    <div class="row"><div class="k">Метаданные скана</div><div>SHA-256 хэш APK, имя пакета, метка, вердикт, оценка риска, причины, список опасных разрешений</div></div>
-    <div class="row"><div class="k">Местоположение (GPS)</div><div>ТОЛЬКО если вы дали разрешение на геолокацию. Для отображения устройства и региональных угроз на карте защиты. <strong>Фонового слежения НЕТ</strong> — координата считывается только когда приложение активно и округляется до ~6 знаков. Без разрешения координата вообще не отправляется.</div></div>
-    <div class="row"><div class="k">IP-адрес</div><div>Сервер видит IP при каждом запросе; без GPS определяет лишь примерный город</div></div>
-    <div class="row"><div class="k">ОПАСНЫЙ/ПОДОЗРИТ. APK-файл</div><div>ТОЛЬКО при вердикте «опасно» или «подозрительно» — сам файл (до 50 МБ) загружается в защищённое хранилище для изучения и создания новых сигнатур. <strong>БЕЗОПАСНЫЕ APK-файлы НЕ загружаются НИКОГДА.</strong></div></div>
-  </div>
-  <p>При включённой функции владелец панели может отправить на устройство команду <em>повторного сканирования</em> или сообщение (однократно, at-most-once). Это тоже работает только при включённой функции.</p>
-
-  <h3>(b) В Telegram-бот команды UzGuard (api.telegram.org)</h3>
-  <p>ТОЛЬКО при обнаружении опасного или подозрительного APK: SHA-256 хэш APK, имя пакета, вердикт, обнаруженная сигнатура (причина), производитель и модель устройства, версия Android, а также сам APK-файл (до 50 МБ).</p>
-
-  <h3>(c) При сбое приложения (crash)</h3>
-  <p>Чтобы разработчик мог исправить ошибку: стектрейс (место ошибки в коде), модель устройства, версия Android, версия UzGuard и время.</p>
-
-  <h2>5. Присоединение к группе <span class="pill opt">ОПЦИЯ — вводите вы сами</span></h2>
-  <p>Если владелец дал вам <strong>код</strong> группы (например семейный или корпоративный парк устройств), вы можете сами ввести в приложении <strong>имя, фамилию и номер телефона</strong> и присоединиться к группе. Это единственный случай, когда ваши имя и номер телефона могут быть отправлены на сервер (вместе с анонимным токеном устройства), и происходит это только когда вы сами заполнили поля и нажали «Присоединиться». Без ввода кода эти данные никогда не запрашиваются и не отправляются.</p>
-
-  <h2>6. Личная Telegram-телеметрия <span class="pill opt">ОПЦИЯ</span> <span class="pill off">по умолчанию: ВЫКЛ</span></h2>
-  <p>Эта функция отправляет события в <strong>ВАШ СОБСТВЕННЫЙ</strong> Telegram-бот (например, чтобы родитель следил за телефоном ребёнка). Она работает, только если вы ввели <em>свой</em> токен бота и chat_id на скрытом экране «Диагностика».</p>
-  <p>При включении отправляется: результаты сканера (имя файла, размер, вердикт, причина, источник — telegram/whatsapp/загрузка), новые установленные приложения (имя пакета, метка), запуск/остановка приложения, crash-логи, данные устройства (производитель, модель, версия Android) и тестовые сообщения, которые вы отправили.</p>
-  <p><strong>Важно:</strong> эти данные идут ТОЛЬКО в введённый вами бот — не разработчику. Сторонняя аналитика и рекламные сети не используются.</p>
-
-  <h2>7. Самообновление</h2>
-  <p>Поскольку приложение распространяется вне Play Store, оно может скачивать обновление по ссылке из подписанной конфигурации. Новый APK проходит трёхуровневую проверку (подписанные метаданные, соответствие SHA-256, соответствие сертификата), после чего установка выполняется системным установщиком по одному вашему нажатию. Личные данные при этом не отправляются — только скачивается APK-файл. (При установке через Play Store обновления приходят через Play.)</p>
-
-  <h2>8. Что не собирается никогда</h2>
-  <div class="never">
-    <h3>Даже при ВКЛЮЧЁННЫХ функциях выше НИКОГДА:</h3>
-    <ul>
-      <li>Сами безопасные APK-файлы (уходят только их метаданные для статистики)</li>
-      <li>Личные файлы (фото, видео, документы), контакты, SMS, история чатов</li>
-      <li>История браузера, пароли, токены аккаунтов</li>
-      <li>IMEI, серийный номер, MAC-адрес</li>
-      <li>(В облако) список других приложений на устройстве</li>
-    </ul>
-    <p style="margin-bottom:2px">Имя и номер телефона отправляются только в необязательном «Присоединении к группе» (раздел 5), когда вы вводите их сами.</p>
-  </div>
-
-  <h2>9. С кем мы делимся данными</h2>
-  <p>Мы <strong>не продаём</strong> ваши данные. Рекламные сети и сторонние SDK аналитики (Firebase, Crashlytics, Google Analytics) <strong>не используются</strong>. При включённых опциях данные передаются только следующей инфраструктуре:</p>
-  <ul>
-    <li><strong>Облачная инфраструктура UzGuard</strong> — Vercel (хостинг) и Supabase (база/хранилище) как субпроцессоры</li>
-    <li><strong>Telegram</strong> — для командного бота и (если вы включили) каналов личной телеметрии (telegram.org/privacy)</li>
-  </ul>
-
-  <h2>10. Срок хранения</h2>
-  <ul>
-    <li><strong>Данные на устройстве:</strong> хранятся до удаления приложения или очистки истории вами</li>
-    <li><strong>Облачная телеметрия и карта угроз:</strong> хранятся столько, сколько нужно для работы сервиса безопасности</li>
-    <li><strong>Образцы вредоносных APK:</strong> хранятся для разработки сигнатур</li>
-    <li>Чтобы удалить отправленные данные — напишите на email ниже; мы удалим их по возможности</li>
-  </ul>
-
-  <h2>11. Ваш контроль / отказ</h2>
-  <ul>
-    <li><strong>Обмен для сообщества</strong> вкл/выкл: Настройки → «Обмен для сообщества»</li>
-    <li><strong>Личную Telegram-телеметрию</strong> отключить: Диагностика → Telegram-телеметрия → снять галочку</li>
-    <li><strong>Геолокация:</strong> отозвать разрешение в системных настройках Android в любой момент</li>
-    <li><strong>Очистить историю сканирований:</strong> Настройки → «Очистить историю»</li>
-    <li><strong>Полностью отозвать согласие:</strong> Настройки → «Отозвать согласие»</li>
-    <li><strong>Запрос на удаление данных:</strong> email ниже</li>
-    <li><strong>Удаление приложения</strong> — все локальные данные исчезают</li>
-  </ul>
-
-  <h2>12. Безопасность</h2>
-  <ul>
-    <li>Всё облачное общение только по HTTPS; сертификат сервера закреплён в приложении (certificate pinning)</li>
-    <li>Скачиваемые базы проверяются цифровой подписью — поддельная база не принимается</li>
-    <li>Идентификатор устройства — случайный UUID; запросы подписываются ключом устройства (HMAC)</li>
-    <li>Настоящие идентификаторы (IMEI, серийный номер, номер телефона) не используются вовсе</li>
-  </ul>
-
-  <h2>13. Дети</h2>
-  <p>UzGuard не предназначен для детей младше 13 лет, и данные о них сознательно не собираются. Если вы родитель и знаете, что вашим приложением пользуется ребёнок младше 13 лет — удалите приложение или свяжитесь с нами.</p>
-
-  <h2>14. Международная передача</h2>
-  <p>При включённых опциях данные могут передаваться на серверы за пределами Узбекистана: облачная инфраструктура (Vercel / Supabase, международная) и серверы Telegram.</p>
-
-  <h2>15. Изменения политики</h2>
-  <p>Эта политика может периодически обновляться. При существенных изменениях при открытии приложения повторно запрашивается согласие, а дата «Дата вступления» на этой странице обновляется.</p>
-
-  <h2>16. Контакты</h2>
-  <p>По вопросам конфиденциальности, доступа к данным или их удаления:</p>
-  <p><a class="cta" href="https://t.me/zimdevuz">@zimdevuz</a></p>
-
 </section>
 
-</div>
+<!-- ============ HOW ============ -->
+<section id="qanday" class="how">
+  <div class="wrap">
+    <div class="eyebrow rv" data-i18n="how_eyebrow">Qanday ishlaydi</div>
+    <h2 class="rv" data-i18n="how_h2">Uch qadam. <span class="gr">Bir soniya.</span></h2>
+    <div class="steps">
+      <div class="step rv"><span class="num">1</span><div class="shot"><img src="assets/screens/prot_status.webp" alt="" width="540" height="1200" loading="lazy"></div><h3 data-i18n="s1h">Himoyani bir ekranda yoqing</h3><p data-i18n="s1p">Barcha ruxsatlar bitta ro'yxatda, har biri sababi bilan. Bir marta yoqasiz — keyin UzGuard o'zi ishlaydi.</p></div>
+      <div class="step rv"><span class="num">2</span><div class="shot"><img src="assets/screens/scan2.webp" alt="" width="540" height="1200" loading="lazy"></div><h3 data-i18n="s2h">Fayl keladi — tekshiriladi</h3><p data-i18n="s2p">Telegram'dan «video» yoki «yangilanish» tushdi — UzGuard papkani kuzatib turadi va APK'ni o'rnatilmasidan oldin, telefonning o'zida tahlil qiladi.</p></div>
+      <div class="step safe rv"><span class="num">3</span><div class="shot"><img src="assets/screens/scan_safe.webp" alt="" width="540" height="1200" loading="lazy"></div><h3 data-i18n="s3h">Natija — sodda tilda</h3><p data-i18n="s3p">Xavfsiz — yashil «telefoningiz xavfsiz». Xavfli — qizil ogohlantirish, sabab va nima qilish kerakligi. Qaror siznikida: o'chirish, karantin yoki o'rnatish.</p></div>
+    </div>
+
+    <div class="compare">
+      <div class="cmp us rv">
+        <h3 data-i18n="cmp_us_h">UzGuard</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#5FD38C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span data-i18n="cu1">Faylning o'zini tahlil qiladi — kodi, ruxsatlari, tuzilishi</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#5FD38C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span data-i18n="cu2">Noma'lum, yangi (zero-day) tahdidlarni ham topadi</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#5FD38C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span data-i18n="cu3">Internetsiz ishlaydi — qishloqda ham, samolyotda ham</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#5FD38C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span data-i18n="cu4">Fayl telefondan chiqmaydi</span></li>
+        </ul>
+      </div>
+      <div class="cmp them rv">
+        <h3 data-i18n="cmp_them_h">Ko'pchilik «antivirus» ilovalar</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#C2143D" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg><span data-i18n="ct1">Faqat fayl xeshini internetdagi bazadan qidiradi</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#C2143D" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg><span data-i18n="ct2">Yangi, hali bazaga tushmagan troyanni ko'rmaydi</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#C2143D" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg><span data-i18n="ct3">Internet bo'lmasa — ishlamaydi</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#C2143D" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg><span data-i18n="ct4">Fayl haqidagi ma'lumot xorijiy serverga ketadi</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST ============ -->
+<section id="ishonch">
+  <div class="wrap">
+    <div class="eyebrow rv" data-i18n="trust_eyebrow">Ishonch</div>
+    <h2 class="rv" data-i18n="trust_h2">Rasmiy. <span class="gr">Davlat reyestrida.</span></h2>
+    <div class="trust-grid">
+      <div class="cert rv">
+        <div class="eyebrow" data-i18n="cert_eyebrow">O'zbekiston Respublikasi Adliya vazirligi</div>
+        <div class="no">DGU 68288</div>
+        <div class="who" data-i18n="cert_who">Dasturiy mahsulotlar davlat reyestri. Muallif va huquq egasi — Izatillayev Muhammadali.</div>
+        <dl>
+          <dt data-i18n="cert_d1">Sana</dt><dd>15.08.2026</dd>
+          <dt data-i18n="cert_d2">Talabnoma</dt><dd>DT 202609562</dd>
+          <dt data-i18n="cert_d3">Tekshirish</dt><dd><a href="https://im.adliya.uz/document/check/f553d910-8914-40df-b808-f66d5bcaf5bf" target="_blank" rel="noopener" style="color:var(--blue)">im.adliya.uz →</a></dd>
+        </dl>
+      </div>
+      <div class="author rv">
+        <div>
+          <div class="tag" data-i18n="auth_tag">Kim yaratdi</div>
+          <div class="big">15<small data-i18n="auth_small">yosh</small></div>
+        </div>
+        <p data-i18n="auth_p">UzGuard'ni Navoiy shahridan 15 yoshli dasturchi Muhammadali yaratdi — Telegram orqali tarqalayotgan bank-troyanlarini ko'rib. Bir kishi, bir maqsad: odamlar aldanmasin.</p>
+      </div>
+    </div>
+
+    <div class="honest rv">
+      <div class="sym"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></div>
+      <div>
+        <h3 style="font-size:19px;margin-bottom:10px" data-i18n="hon_h">Halol ma'lumot</h3>
+        <ul>
+          <li data-i18n="hon1">Hech bir dastur 100% himoyani kafolatlay olmaydi. UzGuard — xavfni kamaytiruvchi vosita, ehtiyotkorlik o'rnini bosmaydi.</li>
+          <li data-i18n="hon2">Noma'lum manbadan ilova o'rnatmang, shubhali havolani ochmang — UzGuard bilan ham.</li>
+          <li data-i18n="hon3">Ilova ichida «Himoya chegaralari» bo'limida nimalarni qila olmasligimizni ochiq yozganmiz.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOWNLOAD ============ -->
+<section id="yuklab" class="dl">
+  <div class="lattice"></div>
+  <div class="wrap">
+    <div class="dl-grid">
+      <div>
+        <div class="eyebrow rv" data-i18n="dl_eyebrow">Yuklab olish</div>
+        <h2 class="rv" data-i18n="dl_h2">Bugun o'rnating.<br>Bepul. Reklamasiz.</h2>
+        <p class="lede rv" data-i18n="dl_lede">Google Play'ga chiqish jarayoni davom etmoqda. Hozircha — to'g'ridan-to'g'ri APK. Ilova o'zini yangilab turadi.</p>
+        <div class="dl-meta rv">
+          <span data-i18n="dlm1">Versiya <b>8.7</b></span>
+          <span data-i18n="dlm2">Hajmi <b>10,4 MB</b></span>
+          <span data-i18n="dlm3">Android <b>7.0 va yuqori</b></span>
+          <span data-i18n="dlm4">Paket <b>com.kiberqalqon</b></span>
+        </div>
+        <div class="hero-cta rv" style="margin-top:0">
+          <a class="btn btn-blue" href="https://kiberqalqon-cloud.vercel.app/kq-update-87.apk" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span data-i18n="dl_btn">UzGuard 8.7 — APK yuklab olish</span></a>
+          <a class="btn btn-ghost" href="https://t.me/zimdevuz" target="_blank" rel="noopener" data-i18n="dl_tg">Telegram: @zimdevuz</a>
+        </div>
+      </div>
+      <div class="qr rv">
+        <img src="assets/qr-apk.png" alt="QR: APK yuklab olish" width="220" height="220">
+        <p data-i18n="qr_p">Telefon kamerasi bilan skanerlang — yuklab olish boshlanadi</p>
+      </div>
+    </div>
+
+    <div class="install">
+      <div class="ins rv"><div class="k">01</div><p data-i18n="i1">APK faylni yuklab oling va oching. Android «Noma'lum manbalardan o'rnatish» ruxsatini so'raydi — brauzer yoki Telegram uchun bir marta yoqing.</p></div>
+      <div class="ins rv"><div class="k">02</div><p data-i18n="i2">O'rnatgach ilovani oching va «Himoya holati» ekranida so'ralgan ruxsatlarni bering — barchasi bitta ro'yxatda, sabablari bilan.</p></div>
+      <div class="ins rv"><div class="k">03</div><p data-i18n="i3">Tayyor. Yangi APK fayllar avtomatik tekshiriladi. Ilova yangilanishlarni o'zi yuklab olib, tasdiqlashni so'raydi.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="savol">
+  <div class="wrap">
+    <div class="eyebrow rv" data-i18n="faq_eyebrow">Savollar</div>
+    <h2 class="rv" data-i18n="faq_h2">Ko'p so'raladigan savollar</h2>
+    <div class="faq">
+      <details class="rv"><summary><span data-i18n="q1">Nega Google Play'da yo'q?</span><span class="plus">+</span></summary><p data-i18n="a1">Google Play developer akkaunti 18 yoshdan katta shaxs nomiga ochiladi — muallifga 15 yosh. Nashr etish jarayoni hamkor tashkilot orqali davom etmoqda. Hozircha APK to'g'ridan-to'g'ri, o'zini yangilab turadi.</p></details>
+      <details class="rv"><summary><span data-i18n="q2">Ilova nimalarga ruxsat so'raydi va nega?</span><span class="plus">+</span></summary><p data-i18n="a2">Barcha fayllarga kirish — Yuklamalar va Telegram papkalaridagi APK'larni ko'rish uchun; bildirishnomalar — ogohlantirish uchun; fonda ishlash — telefon o'chib yonganda ham himoya davom etishi uchun. Har bir ruxsat ilova ichida sababi bilan ko'rsatilgan.</p></details>
+      <details class="rv"><summary><span data-i18n="q3">Ma'lumotlarim qayerga ketadi?</span><span class="plus">+</span></summary><p data-i18n="a3">Hech qayerga. Tahlil telefonda bajariladi. «Jamoatchilik xavfsizligi» opsiyasini o'zingiz yoqsangiz — faqat anonim texnik belgilar (fayl xeshi, paket nomi) yuboriladi, shaxsiy ma'lumot emas. Batafsil — maxfiylik siyosatida.</p></details>
+      <details class="rv"><summary><span data-i18n="q4">Telefonni sekinlashtiradimi? Batareyani yeydimi?</span><span class="plus">+</span></summary><p data-i18n="a4">Yo'q. Tekshiruv faqat yangi fayl paydo bo'lganda ishlaydi; fon rejimi qurilma holatiga moslashadi. 8.x versiyalarida energiya sarfi alohida optimallashtirilgan.</p></details>
+      <details class="rv"><summary><span data-i18n="q5">Pullikmi? Reklama bormi?</span><span class="plus">+</span></summary><p data-i18n="a5">Bepul va reklamasiz. Maqsad — odamlar bank-troyanlaridan aldanmasligi.</p></details>
+      <details class="rv"><summary><span data-i18n="q6">Xato topdim / taklifim bor</span><span class="plus">+</span></summary><p data-i18n="a6">Telegram: @zimdevuz. Har bir xabar o'qiladi.</p></details>
+    </div>
+  </div>
+</section>
 </main>
 
 <footer>
-  <div class="wrap">
-    <p><strong>UzGuard</strong> · com.kiberqalqon · Kuchga kiradi / Дата вступления: <strong>16.08.2026</strong></p>
-    <p>Aloqa / Контакт: <a href="https://t.me/zimdevuz">@zimdevuz</a></p>
-    <p style="font-size:13px;opacity:.85">Rasmiy ro'yxatdan o'tgan / Официально зарегистрировано: O'zbekiston Respublikasi Adliya vazirligi — guvohnoma / свидетельство <strong>№ DGU 68288</strong> (15.08.2026). <a href="https://im.adliya.uz/document/check/f553d910-8914-40df-b808-f66d5bcaf5bf">Tekshirish / Проверить</a></p>
+  <div class="wrap foot">
+    <div>© 2026 UzGuard · Muhammadali · Navoiy</div>
+    <div class="links">
+      <a href="privacy.html" data-i18n="ft_privacy">Maxfiylik siyosati</a>
+      <a href="https://im.adliya.uz/document/check/f553d910-8914-40df-b808-f66d5bcaf5bf" target="_blank" rel="noopener" data-i18n="ft_cert">Guvohnoma DGU 68288</a>
+      <a href="https://t.me/zimdevuz" target="_blank" rel="noopener">@zimdevuz</a>
+    </div>
   </div>
 </footer>
 
 <script>
-  function setLang(l){
-    var uz = document.getElementById('doc-uz');
-    var ru = document.getElementById('doc-ru');
-    var bu = document.getElementById('btn-uz');
-    var br = document.getElementById('btn-ru');
-    var isUz = (l === 'uz');
-    uz.classList.toggle('active', isUz);
-    ru.classList.toggle('active', !isUz);
-    bu.setAttribute('aria-pressed', isUz ? 'true' : 'false');
-    br.setAttribute('aria-pressed', isUz ? 'false' : 'true');
-    document.documentElement.setAttribute('lang', l);
-    try { location.hash = l; } catch(e){}
-  }
-  if (location.hash === '#ru') setLang('ru');
-</script>
+/* ---------- i18n ---------- */
+const T = {
+uz:{},
+ru:{
+ nav_features:"Возможности", nav_how:"Как работает", nav_trust:"Доверие", nav_faq:"Вопросы", nav_dl:"Скачать",
+ hero_pill:"Офлайн · Приватно · Бесплатно",
+ hero_h1:"Ваш телефон<br><span class='ac'>под защитой.</span>",
+ hero_lede:"UzGuard — офлайн-антивирус, созданный для Узбекистана. Находит вредоносные APK-файлы <b>до</b> установки — без интернета, прямо на телефоне.",
+ hero_cta1:"Скачать APK", hero_cta2:"Как работает →",
+ meta_ver:"<b>v8.7</b> · 10,4 МБ", meta_android:"Android <b>7.0+</b>", meta_cert:"Госреестр <b>DGU 68288</b>", meta_lang:"O'zbek · Русский",
+ float1:"Защита включена", float1s:"Загрузки · Telegram под наблюдением", float2:"Опасный APK заблокирован",
+ feat_eyebrow:"Возможности",
+ feat_h2:"Банковские трояны приходят из Telegram.<br><span class='ac'>UzGuard останавливает их на пороге.</span>",
+ feat_lede:"Мошенники рассылают вредоносные приложения под видом «видео», «приглашения» или «обновления». Мы построены именно против этих атак.",
+ f1h:"Проверяет до установки", f1p:"Автоматически следит за новыми APK в Загрузках, Telegram и других папках. Опасный файл — предупреждение ещё до установки.",
+ f2h:"Полностью офлайн", f2p:"Анализ выполняется на самом телефоне. Файл никуда не загружается, интернет не нужен.",
+ f3h:"Ajina.Banker, RoundRift…", f3p:"Узнаёт признаки банковских троянов, нацеленных на Центральную Азию: поддельные обновления, ZIP-шифрованные APK, связка «чтение SMS + администратор устройства».",
+ f4h:"Простым языком", f4p:"Результат не в технических терминах — что опасно и что делать, сказано обычными словами.",
+ f5h:"Проверка ссылок и QR", f5p:"Оценивает ссылку из Telegram или SMS до открытия. Отличает поддельные банковские приложения от настоящих.",
+ f6h:"Приватность прежде всего", f6p:"Без регистрации, без Google-аккаунта. Телеметрия — только если вы её включите, и только анонимная.",
+ how_eyebrow:"Как работает", how_h2:"Три шага. <span class='gr'>Одна секунда.</span>",
+ s1h:"Включите защиту на одном экране", s1p:"Все разрешения в одном списке, каждое — с объяснением зачем. Включаете один раз — дальше UzGuard работает сам.",
+ s2h:"Приходит файл — проверяется", s2p:"«Видео» или «обновление» из Telegram — UzGuard следит за папкой и анализирует APK до установки, прямо на телефоне.",
+ s3h:"Результат — простым языком", s3p:"Безопасно — зелёное «ваш телефон в безопасности». Опасно — красное предупреждение, причина и что делать. Решение за вами: удалить, в карантин или установить.",
+ cmp_us_h:"UzGuard",
+ cu1:"Анализирует сам файл — код, разрешения, структуру", cu2:"Находит и новые, неизвестные (zero-day) угрозы", cu3:"Работает без интернета — в кишлаке и в самолёте", cu4:"Файл не покидает телефон",
+ cmp_them_h:"Большинство «антивирусов»",
+ ct1:"Ищут только хеш файла в базе в интернете", ct2:"Не видят новый троян, которого ещё нет в базе", ct3:"Без интернета не работают", ct4:"Данные о файле уходят на зарубежный сервер",
+ trust_eyebrow:"Доверие", trust_h2:"Официально. <span class='gr'>В госреестре.</span>",
+ cert_eyebrow:"Министерство юстиции Республики Узбекистан",
+ cert_who:"Государственный реестр программных продуктов. Автор и правообладатель — Изатиллаев Мухаммадали.",
+ cert_d1:"Дата", cert_d2:"Заявка", cert_d3:"Проверить",
+ auth_tag:"Кто создал", auth_small:"лет",
+ auth_p:"UzGuard создал 15-летний разработчик Мухаммадали из Навои — увидев, как через Telegram расходятся банковские трояны. Один человек, одна цель: чтобы людей не обманывали.",
+ hon_h:"Честно",
+ hon1:"Ни одна программа не гарантирует 100% защиты. UzGuard снижает риск, но не заменяет осторожность.",
+ hon2:"Не устанавливайте приложения из неизвестных источников и не открывайте подозрительные ссылки — даже с UzGuard.",
+ hon3:"В приложении, в разделе «Границы защиты», мы открыто написали, чего не умеем.",
+ dl_eyebrow:"Скачать", dl_h2:"Установите сегодня.<br>Бесплатно. Без рекламы.",
+ dl_lede:"Выход в Google Play в процессе. Пока — прямой APK. Приложение обновляет себя само.",
+ dlm1:"Версия <b>8.7</b>", dlm2:"Размер <b>10,4 МБ</b>", dlm3:"Android <b>7.0 и выше</b>", dlm4:"Пакет <b>com.kiberqalqon</b>",
+ dl_btn:"UzGuard 8.7 — скачать APK", dl_tg:"Telegram: @zimdevuz",
+ qr_p:"Отсканируйте камерой телефона — начнётся загрузка",
+ i1:"Скачайте APK и откройте его. Android попросит разрешить «установку из неизвестных источников» — включите один раз для браузера или Telegram.",
+ i2:"После установки откройте приложение и на экране «Состояние защиты» выдайте запрошенные разрешения — все в одном списке, с объяснением зачем.",
+ i3:"Готово. Новые APK проверяются автоматически. Обновления приложение скачивает само и просит подтвердить.",
+ faq_eyebrow:"Вопросы", faq_h2:"Частые вопросы",
+ q1:"Почему нет в Google Play?", a1:"Аккаунт разработчика Google Play открывается только на человека старше 18 лет — автору 15. Публикация через партнёрскую организацию в процессе. Пока — прямой APK, который обновляет себя сам.",
+ q2:"Какие разрешения просит приложение и зачем?", a2:"Доступ ко всем файлам — чтобы видеть APK в Загрузках и папках Telegram; уведомления — для предупреждений; работа в фоне — чтобы защита продолжалась после перезагрузки. Каждое разрешение объяснено внутри приложения.",
+ q3:"Куда уходят мои данные?", a3:"Никуда. Анализ выполняется на телефоне. Если вы сами включите опцию «Общественная безопасность» — отправляются только анонимные технические признаки (хеш файла, имя пакета), не личные данные. Подробнее — в политике конфиденциальности.",
+ q4:"Тормозит телефон? Ест батарею?", a4:"Нет. Проверка запускается только при появлении нового файла; фоновый режим подстраивается под состояние устройства. В версиях 8.x энергопотребление отдельно оптимизировано.",
+ q5:"Платно? Есть реклама?", a5:"Бесплатно и без рекламы. Цель — чтобы людей не обманывали банковские трояны.",
+ q6:"Нашёл ошибку / есть предложение", a6:"Telegram: @zimdevuz. Каждое сообщение читается.",
+ ft_privacy:"Политика конфиденциальности", ft_cert:"Свидетельство DGU 68288"
+}};
+// capture uz defaults from DOM
+document.querySelectorAll('[data-i18n]').forEach(el=>{T.uz[el.dataset.i18n]=el.innerHTML;});
+function setLang(l){
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const v=T[l][el.dataset.i18n]; if(v!=null) el.innerHTML=v;});
+  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===l)));
+  try{localStorage.setItem('uzguard_lang',l)}catch(e){}
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+(function(){let l='uz';try{l=localStorage.getItem('uzguard_lang')||((navigator.language||'').startsWith('ru')?'ru':'uz')}catch(e){} if(l!=='uz')setLang(l);})();
 
+/* ---------- reveal ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// hero reveals on load regardless of viewport height
+requestAnimationFrame(()=>document.querySelectorAll('.hero .rv').forEach(el=>el.classList.add('in')));
+</script>
 </body>
 </html>
