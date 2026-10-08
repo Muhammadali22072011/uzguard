@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>UzGuard — Maxfiylik siyosati / Политика конфиденциальности</title>
-<meta name="description" content="UzGuard (com.kiberqalqon) antivirus ilovasining maxfiylik siyosati — qanday ma'lumot yig'iladi, nima uchun va qanday boshqariladi.">
+<meta name="description" content="UzGuard (com.kiberqalqon) antivirus ilovasining maxfiylik siyosati — Google Play versiyasi (9.6) va sayt versiyasi: qanday ma'lumot yig'iladi, nima uchun va qanday boshqariladi.">
 <style>
   :root{
     --bg:#faf6f0; --panel:#ffffff; --ink:#1c1917; --muted:#6b6360;
@@ -67,7 +67,11 @@
     font-size:20px; margin:34px 0 10px; padding-top:8px; line-height:1.3;
     border-top:1px solid var(--line);
   }
-  h2:first-of-type{border-top:0; margin-top:6px}
+  h2.part{
+    font-size:23px; margin:46px 0 12px; padding:14px 16px; border:0; border-radius:12px;
+    background:var(--accent-soft); color:var(--accent);
+  }
+  h2.part.site{background:var(--warn-soft); color:var(--warn)}
   h3{font-size:16px; margin:20px 0 6px}
   p{margin:10px 0}
   ul{margin:10px 0; padding-left:22px}
@@ -85,6 +89,7 @@
   .pill.opt{background:var(--warn-soft); color:var(--warn)}
   .pill.off{background:var(--code); color:var(--muted)}
   .pill.local{background:var(--ok-soft); color:var(--ok)}
+  .pill.req{background:var(--accent-soft); color:var(--accent)}
   .keyval{margin:14px 0}
   .keyval .row{
     display:grid; grid-template-columns:170px 1fr; gap:4px 18px;
@@ -99,14 +104,9 @@
   .toc{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:14px 18px; margin:8px 0 4px}
   .toc ol{margin:6px 0 0; padding-left:20px; columns:2; column-gap:26px; font-size:14.5px}
   @media (max-width:560px){ .toc ol{columns:1} }
-  table.summary{border-collapse:collapse; width:100%; margin:14px 0; font-size:14px}
-  table.summary th, table.summary td{border:1px solid var(--line); padding:9px 11px; text-align:left; vertical-align:top}
-  table.summary th{background:var(--code); font-weight:600}
-  .scroll{overflow-x:auto}
   footer{border-top:1px solid var(--line); padding:24px 0 50px; color:var(--muted); font-size:13.5px}
   .cta{display:inline-block; margin-top:6px; background:var(--accent-soft); color:var(--accent);
        padding:8px 16px; border-radius:10px; font-weight:600}
-  hr.soft{border:0; border-top:1px solid var(--line); margin:26px 0}
 </style>
 </head>
 <body>
@@ -115,11 +115,13 @@
   <div class="wrap">
     <div class="badge">UzGuard · Antivirus</div>
     <h1>Maxfiylik siyosati · Политика конфиденциальности</h1>
-    <p>UzGuard — Android qurilmalar uchun oflayn APK antivirus.</p>
+    <p>UzGuard — Android qurilmalar uchun APK antivirus (tekshiruv qurilmaning o‘zida bajariladi).</p>
     <div class="meta">
       <span><strong>Ilova / Приложение:</strong> UzGuard</span>
       <span><strong>Paket / Пакет:</strong> com.kiberqalqon</span>
-      <span><strong>Kuchga kiradi / Дата вступления:</strong> 16.08.2026</span>
+      <span><strong>Google Play:</strong> 9.6 (versionCode 96)</span>
+      <span><strong>Kuchga kiradi / Дата вступления:</strong> 08.10.2026</span>
+      <span><strong>Aloqa / Контакт:</strong> <a href="mailto:uzguard.navoiy@gmail.com">uzguard.navoiy@gmail.com</a></span>
     </div>
   </div>
 </header>
@@ -139,23 +141,26 @@
   <p class="lead">Ushbu siyosat UzGuard ilovasi (paket <code>com.kiberqalqon</code>) qanday ma'lumotlarni yig'ishi, nima uchun ishlatishi, kim bilan ulashishi va siz buni qanday boshqarishingizni to‘liq tushuntiradi. <strong>Hech narsa yashirilmagan.</strong></p>
 
   <div class="card accent">
-    <strong>Bir jumlada:</strong> UzGuard barcha tekshiruvlarni telefoningizning <strong>o‘zida</strong> bajaradi. Qurilmadan tashqariga ma'lumot chiqishi FAQAT ikkita <em>ixtiyoriy</em>, standart holatda <em>o‘chirilgan</em> funksiya orqali sodir bo‘ladi. Biz ma'lumotlaringizni <strong>sotmaymiz</strong> va reklama tarmoqlariga bermaymiz.
+    <strong>Qaysi qism sizga tegishli?</strong> Hujjat ikki qismdan iborat: <a href="#uz-a"><strong>A qism — Google Play versiyasi</strong></a> (9.6 va undan keyingi Play versiyalari) va <a href="#uz-b"><strong>B qism — sayt versiyasi</strong></a> (to‘g‘ridan-to‘g‘ri yuklab olinadigan APK). Ilovani <strong>Google Play</strong>'dan o‘rnatgan bo‘lsangiz — sizga FAQAT A qism tegishli. B qismdagi funksiyalar (joylashuv, VPN-filtr, maxsus imkoniyatlar xizmati, shaxsiy Telegram-bot va h.k.) Play versiyasida o‘chirilgan: ularning xizmatlari va ruxsatlari Play ilovasining manifestida yo‘q.
+  </div>
+
+  <div class="card accent">
+    <strong>Bir jumlada (Google Play versiyasi):</strong> UzGuard zararli-kod tekshiruvini telefoningizning <strong>o‘zida</strong> bajaradi. Birinchi ishga tushishda alohida «Ma'lumot yig'ish haqida ogohlantirish» oynasi chiqadi; «Roziman» bosilgach har bir qurilma skan natijalarini va 4-bo‘limdagi texnik ma'lumotlarni UzGuard serveriga yuboradi — bu ilovadan foydalanishning <strong>MAJBURIY</strong> qismi va uni ilova ichida alohida o‘chirib bo‘lmaydi (rad etsangiz ilova ishlamaydi). Play versiyasi <strong>joylashuvni (GPS) so‘ramaydi va o‘qimaydi</strong>. Ma'lumotlaringizni <strong>sotmaymiz</strong>, reklama tarmoqlariga bermaymiz; ilovada reklama yo‘q. UzGuard davlat organi ilovasi emas.
   </div>
 
   <div class="toc">
-    <strong>Bo‘limlar</strong>
+    <strong>A qism — Google Play versiyasi</strong>
     <ol>
       <li>Asosiy prinsip</li>
       <li>Qurilmada saqlanadigan ma'lumotlar</li>
       <li>Himoya bazasini yangilash (texnik trafik)</li>
-      <li>Jamoatchilik xavfsizligi ulashishi (ixtiyoriy)</li>
-      <li>Guruhga qo‘shilish (ixtiyoriy)</li>
-      <li>Shaxsiy Telegram telemetriya (ixtiyoriy)</li>
-      <li>O‘z-o‘zini yangilash</li>
+      <li>Ma'lumot yig'ish haqida ogohlantirish va markaziy monitoring (majburiy)</li>
+      <li>Ixtiyoriy va siz o‘zingiz boshlaydigan amallar</li>
       <li>Hech qachon yig‘ilmaydigan ma'lumotlar</li>
+      <li>Ruxsatlar nima uchun kerak</li>
       <li>Ma'lumot bilan kim ishlaydi (ulashish)</li>
       <li>Saqlash muddati</li>
-      <li>Sizning nazoratingiz / opt-out</li>
+      <li>Sizning nazoratingiz va huquqlaringiz</li>
       <li>Xavfsizlik</li>
       <li>Bolalar</li>
       <li>Xalqaro o‘tkazish</li>
@@ -164,125 +169,182 @@
     </ol>
   </div>
 
+  <h2 class="part" id="uz-a">A qism — Google Play versiyasi <span class="pill local">GOOGLE PLAY</span></h2>
+
   <h2>1. Asosiy prinsip</h2>
-  <p>UzGuard — <strong>oflayn skaner</strong>. APK fayllar imzo, ruxsatlar va zararli-kod signaturalari bo‘yicha to‘g‘ridan-to‘g‘ri qurilmangizda tahlil qilinadi. Skan natijalari va sozlamalar <strong>faqat sizning telefoningizda</strong> saqlanadi.</p>
-  <p>Qurilmaga oid ma'lumot tashqariga FAQAT siz o‘zingiz yoqqan ixtiyoriy funksiyalar orqali chiqadi:</p>
+  <p>UzGuard — <strong>oflayn skaner</strong>. APK fayllar imzo, ruxsatlar va zararli-kod signaturalari bo‘yicha to‘g‘ridan-to‘g‘ri qurilmangizda tahlil qilinadi. Skan tarixi, statistika va sozlamalar <strong>faqat sizning telefoningizda</strong> saqlanadi.</p>
+  <p>Qurilmaga oid ma'lumot tashqariga quyidagi yo‘llar bilan chiqadi:</p>
   <ul>
-    <li><strong>Jamoatchilik xavfsizligi ulashishi</strong> (4-bo‘lim) <span class="pill opt">IXTIYORIY</span> <span class="pill off">standart: O‘CHIQ</span></li>
-    <li><strong>Shaxsiy Telegram telemetriya</strong> (6-bo‘lim) <span class="pill opt">IXTIYORIY</span> <span class="pill off">standart: O‘CHIQ</span></li>
+    <li><strong>Markaziy himoya monitoringi</strong> (4-bo‘lim) <span class="pill req">MAJBURIY</span> — «Roziman» bosgan har bir qurilma uchun; ilova ichida alohida o‘chirib bo‘lmaydi</li>
+    <li><strong>Guruhga qo‘shilish</strong> va <strong>«Muammo haqida xabar»</strong> (5-bo‘lim) <span class="pill opt">IXTIYORIY</span> — faqat siz o‘zingiz boshlaganingizda</li>
   </ul>
-  <p>Bulardan tashqari, ilova faqat himoya bazalarini <strong>yuklab oladi</strong> (3-bo‘lim) — bu so‘rovlar shaxsiy ma'lumot yubormaydi.</p>
+  <p>Bulardan tashqari, ilova himoya bazalarini <strong>yuklab oladi</strong> (3-bo‘lim) — bu so‘rovlar shaxsiy ma'lumot yubormaydi.</p>
 
   <h2>2. Qurilmada saqlanadigan ma'lumotlar <span class="pill local">FAQAT TELEFONDA</span></h2>
   <p>Quyidagilar telefonning himoyalangan ichki xotirasida saqlanadi, boshqa ilovalar uchun ochiq emas:</p>
   <ul>
-    <li>Skan tarixi (oxirgi ~200 yozuv): APK nomi, yo‘li, verdict (xavfsiz / shubhali / xavfli), sabab, vaqt</li>
+    <li>Skan tarixi (oxirgi 200 ta yozuv): APK nomi, yo‘li, natija (xavfsiz / shubhali / xavfli), sabab, vaqt</li>
     <li>Statistika hisoblagichlari: jami skan, bloklangan, xavfsiz</li>
-    <li>Sozlamalar: til, mavzu, sezgirlik darajasi, funksiya kalitlari</li>
-    <li>Karantin: xavfli deb topilgan fayllar — ilovaning shifrlangan ichki papkasida</li>
+    <li>Sozlamalar: til, mavzu, sezgirlik darajasi, funksiya kalitlari; ixtiyoriy PIN (faqat tuzli SHA-256 ko‘rinishida)</li>
+    <li>Karantin: xavfli deb topilgan fayllar — ilovaning ichki papkasida</li>
+    <li>O‘rnatilgan ilovalarni va Wi-Fi tarmog‘ini tekshirish natijalari — faqat qurilmada tahlil qilinadi va serverga yuborilmaydi</li>
   </ul>
   <p>Ilovani o‘chirsangiz, bu ma'lumotlarning hammasi birga o‘chadi.</p>
 
   <h2>3. Himoya bazasini yangilash (texnik trafik)</h2>
   <p>Antivirus dolzarb bo‘lishi uchun ilova vaqti-vaqti bilan UzGuard markaziy serveridan (xavfsiz HTTPS orqali) quyidagilarni <strong>yuklab oladi</strong>:</p>
   <ul>
-    <li>Virus qora ro‘yxati (yangi tahdidlarning SHA-256 hash va paket nomlari) — raqamli imzo bilan tekshiriladi</li>
-    <li>Himoya sozlamalari (skaner chegaralari)</li>
-    <li>Yangiliklar / xavfsizlik e'lonlari lentasi</li>
+    <li>Virus qora ro‘yxati (yangi tahdidlarning SHA-256 hash va paket nomlari) va ma'lum zararli domenlar — raqamli imzo bilan tekshiriladi</li>
+    <li>Himoya sozlamalari (skaner chegaralari) — imzolangan konfiguratsiya</li>
+    <li>Yangiliklar / xavfsizlik e'lonlari lentasi va ularning rasmlari (guruhga qo‘shilgan bo‘lsangiz — guruh kodi bo‘yicha e'lonlar)</li>
   </ul>
-  <p>Bu so‘rovlar faqat YUKLAB OLISH — ularda skan natijalari, fayllar yoki shaxsiy ma'lumot <strong>yuborilmaydi</strong>. Har qanday internet so‘rovida bo‘lgani kabi, server qurilmaning IP-manzilini ko‘radi — bu texnik zarurat.</p>
+  <p>Bu so‘rovlar faqat YUKLAB OLISH — ularda skan natijalari, fayllar yoki shaxsiy ma'lumot <strong>yuborilmaydi</strong> (ilova faqat umumiy ilova kalitini ko‘rsatadi). Bu so‘rovlar ilova ochilganda, rozilikdan oldin ham bajarilishi mumkin. Har qanday internet so‘rovida bo‘lgani kabi, server infratuzilmasi qurilmaning IP-manzilini ko‘radi — bu texnik zarurat.</p>
 
-  <h2>4. Jamoatchilik xavfsizligi ulashishi <span class="pill opt">IXTIYORIY</span> <span class="pill off">standart: O‘CHIQ</span></h2>
-  <p>Yoqsangiz, qurilmalardan kelgan xavf signallari markaziy bazaga yig‘iladi va u yerdan barcha foydalanuvchilarga himoya signaturalari tarqatiladi (Kaspersky Security Network, ESET LiveGrid kabi standart amaliyot). Bu funksiya rozilik ekranidagi 3-galochka orqali yoqiladi va istalgan vaqtda <em>Sozlamalar → “Jamoatchilik ulashish”</em> dan o‘chiriladi. O‘chiq bo‘lsa ham skaner, ogohlantirishlar va himoya <strong>to‘liq</strong> ishlaydi.</p>
+  <h2>4. Ma'lumot yig'ish haqida ogohlantirish va markaziy monitoring <span class="pill req">MAJBURIY</span></h2>
+  <p>Google Play versiyasida birinchi ishga tushishda shartlar va maxfiylik siyosatidan <strong>ALOHIDA</strong> «Ma'lumot yig'ish haqida ogohlantirish» oynasi ko‘rsatiladi: unda quyidagi ma'lumotlar sanab o‘tiladi va siz <strong>«Roziman»</strong> yoki <strong>«Rad etish»</strong>ni tanlaysiz. <strong>«Roziman» bosilmaguncha</strong> quyidagi ma'lumotlar yig‘ilmaydi va yuborilmaydi; «Rad etish» tanlansa ilova ishlamaydi va yopiladi. «Roziman»dan keyin yig‘ish ilovadan foydalanishning bir qismi bo‘lib, ilova ichida alohida tumbler bilan o‘chirilmaydi. Qurilmalardan kelgan xavf signallari markaziy bazaga yig‘iladi va u yerdan barcha foydalanuvchilarga himoya signaturalari tarqatiladi (Kaspersky Security Network, ESET LiveGrid kabi standart amaliyot).</p>
 
-  <h3>(a) Markaziy bulut monitoringiga (Vercel + Supabase)</h3>
-  <p>Har bir skanda (statistika va xaritadagi yashil nuqtalar uchun xavfsiz natijalar ham) yuboriladi:</p>
+  <h3>(a) UzGuard bulut serveriga (Vercel + Supabase)</h3>
   <div class="keyval">
-    <div class="row"><div class="k">Anonim ID</div><div>Tasodifiy UUID (qurilma tokeni). Bu IMEI, seriya raqami yoki telefon raqami <strong>EMAS</strong>.</div></div>
-    <div class="row"><div class="k">Qurilma</div><div>Model (masalan “Samsung SM-A536E”), Android versiyasi, ilova versiyasi, qaysi himoyalar yoqilgani</div></div>
-    <div class="row"><div class="k">Skan meta-ma'lumoti</div><div>APK SHA-256 hashi, paket nomi, yorlig‘i, verdict, risk ball, sabablar, xavfli ruxsatlar ro‘yxati</div></div>
-    <div class="row"><div class="k">Joylashuv (GPS)</div><div>FAQAT siz joylashuv ruxsatini bergan bo‘lsangiz. Markaziy himoya xaritasida qurilma va hududiy tahdidlarni ko‘rsatish uchun. <strong>Fon (background) kuzatuvi YO‘Q</strong> — koordinata faqat ilova ishlayotganda o‘qiladi va ~6 xona aniqlikka yumaloqlanadi. Ruxsat bermasangiz — koordinata umuman yuborilmaydi.</div></div>
-    <div class="row"><div class="k">IP-manzil</div><div>Server har so‘rovda IP ko‘radi; GPS bo‘lmasa undan faqat shahar darajasida taxminiy joy aniqlaydi</div></div>
-    <div class="row"><div class="k">XAVFLI/SHUBHALI APK fayl</div><div>FAQAT verdict xavfli yoki shubhali bo‘lganda — faylning o‘zi (50 MB gacha) o‘rganish va yangi signaturalar yaratish uchun himoyalangan saqlovga yuklanadi. <strong>XAVFSIZ APK fayllari HECH QACHON yuklanmaydi.</strong></div></div>
+    <div class="row"><div class="k">Anonim ID</div><div>Ilova o‘zi yaratadigan tasodifiy qurilma tokeni (UUID asosida). Bu IMEI, seriya raqami, telefon raqami yoki reklama ID <strong>EMAS</strong>. Ilovani qayta o‘rnatsangiz yangi ID yaratiladi.</div></div>
+    <div class="row"><div class="k">Qurilma</div><div>Ishlab chiqaruvchi va model (masalan «Samsung SM-A536E»), Android versiyasi, ilova versiyasi (9.6 / 96)</div></div>
+    <div class="row"><div class="k">Himoya qatlamlari</div><div>Qaysi himoya qatlamlari yoqilgani haqida bayroqlar: doimiy himoya xizmati ishlayaptimi, bildirishnoma ruxsati, havola/APK ochuvchi sozlamalari, batareya optimizatsiyasi, oxirgi to‘liq skandan beri necha soat o‘tgani</div></div>
+    <div class="row"><div class="k">Xavfsizlik holati</div><div>Xavfsizlik-yamoq sanasi, ekran qulfi o‘rnatilganmi, USB-debugging va dasturchi rejimi yoqiqmi, root belgilari, shifrlash holati — FAQAT texnik sozlama/bayroq, matn yoki fayl EMAS</div></div>
+    <div class="row"><div class="k">Mobil operator</div><div>Faqat operator NOMI (masalan «Ucell») — SIM raqami, IMSI yoki telefon raqami EMAS</div></div>
+    <div class="row"><div class="k">Skan meta-ma'lumoti</div><div>Har bir tekshirilgan APK uchun (xavfsiz natija ham — statistika va «jami skan» uchun): SHA-256 xeshi, paket nomi, ilova nomi, fayl hajmi, tekshiruv davomiyligi, natija (xavfsiz / shubhali / xavfli), xavf bali, sabablar va aniqlangan signatura nomlari, xavfli ruxsatlar ro‘yxati. Qurilmangizda o‘rnatilgan ilovalarning o‘z fayllarini tekshirish natijalari yuborilmaydi.</div></div>
+    <div class="row"><div class="k">IP-manzil va taxminiy joy</div><div>Server har so‘rovda IP-manzilni ko‘radi va saqlaydi; undan faqat <strong>taxminiy</strong> (shahar/mamlakat darajasidagi) joy aniqlanadi — xarita va hududiy tahdid statistikasi uchun. Ilovaning o‘zi GPS koordinatasini yubormaydi (joylashuv ruxsati yo‘q).</div></div>
   </div>
-  <p>Yoqilgan bo‘lsa, egangiz paneldan qurilmaga <em>qayta-skan</em> buyrug‘i yoki xabar yuborishi mumkin (bir martalik, at-most-once). Bu ham faqat shu funksiya yoqilganda ishlaydi.</p>
 
-  <h3>(b) UzGuard jamoasining Telegram botiga (api.telegram.org)</h3>
-  <p>FAQAT xavfli yoki shubhali APK aniqlanganda: APK SHA-256 hashi, paket nomi, verdict, aniqlangan signatura (sabab), qurilma ishlab chiqaruvchisi va modeli, Android versiyasi, hamda APK faylning o‘zi (50 MB gacha).</p>
+  <h3>(b) Xavfli yoki shubhali APK faylning o‘zi</h3>
+  <p>FAQAT natija «xavfli» yoki «shubhali» bo‘lganda faylning o‘zi (50 MB gacha) UzGuard bulut saqloviga yuklanadi — uni chuqur o‘rganib yangi virus signaturalarini yaratish uchun. <strong>«Xavfsiz» deb topilgan APK fayllari HECH QACHON yuklanmaydi.</strong></p>
 
   <h3>(c) Ilova xatosi (crash) yuz berganda</h3>
-  <p>Dasturchi xatoni tuzatishi uchun: stacktrace (kod xatosi joyi), qurilma modeli, Android versiyasi, UzGuard versiyasi va vaqt.</p>
+  <p>Dasturchi xatoni tuzatishi uchun: stack trace (kod xatosi joyi), qurilma modeli, Android va UzGuard versiyasi, vaqt — <strong>Google Firebase Crashlytics</strong>ga (Firebase'ning texnik o‘rnatish identifikatori bilan) yuboriladi. Crashlytics faqat «Roziman»dan keyin yoqiladi.</p>
 
-  <h2>5. Guruhga qo‘shilish <span class="pill opt">IXTIYORIY — o‘zingiz kiritasiz</span></h2>
-  <p>Agar egangiz sizga guruh <strong>kodi</strong> bergan bo‘lsa (masalan oila yoki tashkilot fleti), siz ilovaga o‘zingiz <strong>ism, familiya va telefon raqamingizni</strong> kiritib guruhga qo‘shilishingiz mumkin. Bu — yagona holat ismingiz va telefon raqamingiz serverga (anonim qurilma tokeni bilan birga) yuborilishi mumkin, va u faqat siz shu maydonlarni to‘ldirib “Qo‘shilish”ni bosganingizda sodir bo‘ladi. Kod kiritmasangiz — bu ma'lumotlar hech qachon so‘ralmaydi va yuborilmaydi.</p>
+  <h3>(d) Push-xabarlar (Google Firebase Cloud Messaging)</h3>
+  <p>Yangilik va ogohlantirishlarni tez yetkazish uchun Firebase Cloud Messaging qurilmangiz uchun push-token yaratadi va uni Google serverlarida saqlaydi; ilova «yangiliklar» mavzusiga (guruhga qo‘shilgan bo‘lsangiz — guruh mavzusiga ham) obuna bo‘ladi. Push-token UzGuard serveriga yuborilmaydi. Faqat «Roziman»dan keyin yoqiladi.</p>
 
-  <h2>6. Shaxsiy Telegram telemetriya <span class="pill opt">IXTIYORIY</span> <span class="pill off">standart: O‘CHIQ</span></h2>
-  <p>Bu funksiya hodisalarni <strong>O‘ZINGIZNING</strong> Telegram botingizga yuboradi (masalan, ota-ona farzand telefonini kuzatishi uchun). U yashirin Diagnostika ekranida <em>o‘zingizning</em> bot tokeningiz va chat_id’ni kiritganingizdagina ishlaydi.</p>
-  <p>Yoqilgan bo‘lsa yuboriladi: skaner natijalari (fayl nomi, hajmi, verdict, sabab, manba — telegram/whatsapp/yuklab olish), yangi o‘rnatilgan ilovalar (paket nomi, yorlig‘i), ilova ishga tushishi/to‘xtashi, crash log’lari, qurilma ma'lumotlari (ishlab chiqaruvchi, model, Android versiyasi) va siz bosgan test xabarlari.</p>
-  <p><strong>Muhim:</strong> bu ma'lumot FAQAT siz kiritgan botga boradi — dasturchiga emas. Uchinchi tomon analitika yoki reklama tarmoqlari ishlatilmaydi.</p>
+  <h3>(e) UzGuard operatoridan buyruq va xabarlar</h3>
+  <p>Ilova vaqti-vaqti bilan UzGuard serveridan operator buyruqlarini so‘raydi (qurilma tokeni bilan). Faqat uch turi bor: (1) <em>qayta skan</em> — qurilma o‘zining odatdagi skanini ishga tushiradi; (2) <em>xabar</em> — sizga bildirishnoma ko‘rinishida matn; (3) qurilma «yo‘qolgan/buzilgan» deb belgilansa — ogohlantirish bildirishnomasi. Bu buyruqlar orqali fayllaringiz, ekraningiz, kontaktlaringiz yoki joylashuvingiz o‘qilmaydi va qurilma masofadan boshqarilmaydi.</p>
 
-  <h2>7. O‘z-o‘zini yangilash</h2>
-  <p>Ilova Play Store’dan tashqarida tarqatilganda, yangilanishni imzolangan konfiguratsiyadagi havoladan yuklab olishi mumkin. Yangi APK uch qavat tekshiruvdan o‘tadi (imzolangan metadata, SHA-256 mosligi, sertifikat mosligi), so‘ng o‘rnatish sizning bir tapingiz bilan tizim o‘rnatuvchisi orqali amalga oshadi. Bu jarayonda shaxsiy ma'lumot yuborilmaydi — faqat APK fayl yuklab olinadi. (Play Store orqali o‘rnatsangiz, yangilanish Play orqali keladi.)</p>
+  <h2>5. Ixtiyoriy va siz o‘zingiz boshlaydigan amallar <span class="pill opt">IXTIYORIY</span></h2>
+  <p><strong>Guruhga qo‘shilish.</strong> Agar sizga guruh <strong>kodi</strong> berilgan bo‘lsa (masalan oila yoki tashkilot), ilovada o‘zingiz <strong>ism, familiya va telefon raqamingizni</strong> kiritib guruhga qo‘shilishingiz mumkin. Bu ma'lumotlar guruh egasiga ko‘rinadi va faqat siz maydonlarni to‘ldirib «Qo‘shilish»ni bosganingizda UzGuard serveriga (anonim qurilma tokeni bilan birga) yuboriladi. Kod kiritmasangiz — bu ma'lumotlar hech qachon so‘ralmaydi va yuborilmaydi. Guruhga qo‘shilgach, guruh kodi ilova yangiliklari so‘rovida va push-mavzu nomida ishlatiladi.</p>
+  <p><strong>Muammo haqida xabar.</strong> Sozlamalar → «Yordam markazi» orqali o‘zingiz yozgan matn pochta ilovangizda <a href="mailto:uzguard.navoiy@gmail.com">uzguard.navoiy@gmail.com</a> manziliga xat sifatida ochiladi; xatga faqat ilova versiyasi, qurilma modeli va Android versiyasi qo‘shiladi. Xatni siz o‘zingiz yuborasiz — ilovaning o‘zi hech narsa jo‘natmaydi.</p>
 
-  <h2>8. Hech qachon yig‘ilmaydigan ma'lumotlar</h2>
+  <h2>6. Hech qachon yig‘ilmaydigan ma'lumotlar</h2>
   <div class="never">
-    <h3>Yuqoridagi funksiyalar YOQILGAN bo‘lsa ham HECH QACHON:</h3>
+    <h3>Google Play versiyasi HECH QACHON:</h3>
     <ul>
-      <li>Xavfsiz APK fayllarining o‘zi (faqat meta-ma'lumoti statistika uchun ketadi)</li>
-      <li>Shaxsiy fayllar (rasm, video, hujjatlar), kontaktlar, SMS, chat tarixi</li>
-      <li>Internet-brauzer tarixi, parollar, akkaunt token’lari</li>
-      <li>IMEI, seriya raqami, MAC-manzil</li>
-      <li>(Bulutga) qurilmadagi boshqa ilovalar ro‘yxati</li>
+      <li>Joylashuvni (GPS yoki taxminiy) so‘ramaydi va o‘qimaydi — joylashuv ruxsatlari Play ilovasining manifestida yo‘q</li>
+      <li>Xavfsiz APK fayllarining o‘zini yuklamaydi (faqat yuqoridagi meta-ma'lumot ketadi)</li>
+      <li>Shaxsiy fayllar (rasm, video, hujjat), kontaktlar, SMS, qo‘ng‘iroqlar, bildirishnoma XABAR MATNI, chat tarixi, brauzer tarixi, parollar, akkaunt token'lari — yig‘maydi</li>
+      <li>IMEI, seriya raqami, SIM raqami/ICCID, IMSI, MAC-manzil, Android ID, reklama ID — ishlatmaydi</li>
+      <li>Qurilmadagi o‘rnatilgan ilovalarning ro‘yxatini serverga yubormaydi (ro‘yxat faqat qurilmada tahlil qilinadi)</li>
+      <li>Reklama ko‘rsatmaydi; reklama tarmoqlari, Google Analytics va Firebase Analytics ishlatilmaydi</li>
     </ul>
-    <p style="margin-bottom:2px">Ism va telefon raqami faqat 5-bo‘limdagi ixtiyoriy “Guruhga qo‘shilish”da, siz o‘zingiz kiritganda yuboriladi.</p>
+    <p style="margin-bottom:2px">Ism va telefon raqami faqat 5-bo‘limdagi ixtiyoriy «Guruhga qo‘shilish»da, siz o‘zingiz kiritganda yuboriladi.</p>
   </div>
 
-  <h2>9. Ma'lumot bilan kim ishlaydi (ulashish)</h2>
-  <p>Biz ma'lumotlaringizni hech kimga <strong>sotmaymiz</strong>. Reklama tarmoqlari va uchinchi tomon analitika SDK’lari (Firebase, Crashlytics, Google Analytics) <strong>ishlatilmaydi</strong>. Ixtiyoriy funksiyalar yoqilganda ma'lumot faqat quyidagi infratuzilma bilan ulashiladi:</p>
+  <h2>7. Ruxsatlar nima uchun kerak</h2>
   <ul>
-    <li><strong>UzGuard bulut infratuzilmasi</strong> — Vercel (hosting) va Supabase (baza/saqlov) sub-protsessor sifatida</li>
-    <li><strong>Telegram</strong> — jamoa boti va (siz yoqsangiz) shaxsiy telemetriya kanallari uchun (telegram.org/privacy)</li>
+    <li><strong>Barcha fayllarga kirish</strong> (MANAGE_EXTERNAL_STORAGE) — qurilmadagi APK fayllarni (Yuklab olishlar, Telegram va boshqa papkalar) topish va tekshirish, xavflilarini karantinga olish yoki o‘chirish uchun. Fayl mazmuni qurilmada o‘qiladi; faqat xavfli/shubhali APK 4-bo‘limga ko‘ra yuboriladi.</li>
+    <li><strong>O‘rnatilgan ilovalar ro‘yxati</strong> (QUERY_ALL_PACKAGES) — ikonkasini yashirgan zararli ilovalarni ham topish uchun. Ro‘yxat qurilmada tahlil qilinadi.</li>
+    <li><strong>Ilovani o‘chirish so‘rovi</strong> (REQUEST_DELETE_PACKAGES) — xavfli ilovani siz tasdiqlaganingizdan so‘ng tizim oynasi orqali o‘chirish uchun.</li>
+    <li><strong>Bildirishnomalar</strong> (POST_NOTIFICATIONS) va <strong>to‘liq ekranli ogohlantirish</strong> (USE_FULL_SCREEN_INTENT) — xavf haqida o‘z vaqtida xabar berish uchun; ruxsat berilmasa oddiy bildirishnoma ko‘rsatiladi.</li>
+    <li><strong>Doimiy himoya xizmati</strong> (FOREGROUND_SERVICE, «specialUse» turi) va <strong>qayta yuklashdan keyin ishga tushish</strong> (RECEIVE_BOOT_COMPLETED) — real vaqtli himoyani saqlash uchun; xizmat ishlaganda status panelida bildirishnoma ko‘rinadi.</li>
+    <li><strong>Kamera</strong> — faqat QR-skaner ochilganda; QR qurilmada o‘qiladi, rasm saqlanmaydi va yuborilmaydi.</li>
+    <li><strong>Internet, tarmoq va Wi-Fi holati</strong> — baza yangilash, 4-bo‘limdagi yuborish va ochiq (parolsiz) Wi-Fi tarmoqqa ulanganingizda qurilmada ogohlantirish berish uchun.</li>
+    <li><strong>PIN-qulf</strong> (ixtiyoriy) — raqamli PIN faqat qurilmada saqlanadi. Biometrik ruxsatlar (USE_BIOMETRIC, USE_FINGERPRINT) ilovaga qo‘shilgan kutubxona manifestidan keladi va ilova kodida ishlatilmaydi.</li>
+    <li><strong>Shizuku</strong> (ixtiyoriy) — agar o‘zingiz Shizuku o‘rnatib ruxsat bersangiz, boshqa ilova sandboxidagi xavfli faylni o‘chirishga yordam beradi.</li>
   </ul>
+  <p>Google Play versiyasida quyidagi ruxsat/xizmatlar yo‘q: joylashuv (aniq, taxminiy va fon), fon oynasi (SYSTEM_ALERT_WINDOW), APK o‘rnatish (REQUEST_INSTALL_PACKAGES), batareya optimizatsiyasidan istisno so‘rash, rasm/video/audio ruxsatlari, VPN xizmati, maxsus imkoniyatlar (Accessibility) xizmati, bildirishnoma-eshituvchi xizmati va o‘z-o‘zini yangilash.</p>
 
-  <h2>10. Saqlash muddati</h2>
+  <h2>8. Ma'lumot bilan kim ishlaydi (ulashish)</h2>
+  <p>Biz ma'lumotlaringizni hech kimga <strong>sotmaymiz</strong>. Reklama tarmoqlari, Google Analytics va Firebase Analytics <strong>ishlatilmaydi</strong>. Ma'lumot faqat quyidagi infratuzilma bilan ishlanadi (ular bizning nomimizdan va ko‘rsatmamiz bo‘yicha ishlovchi xizmat ko‘rsatuvchilar):</p>
   <ul>
-    <li><strong>Qurilmadagi ma'lumot:</strong> ilovani o‘chirg'ancha yoki tarixni o‘zingiz tozalaguncha saqlanadi</li>
-    <li><strong>Bulut telemetriyasi va tahdid xaritasi:</strong> xavfsizlik xizmati ishlashi uchun zarur muddat davomida saqlanadi</li>
+    <li><strong>UzGuard bulut infratuzilmasi</strong> — Vercel (hosting) va Supabase (ma'lumotlar bazasi va fayl saqlovi): 4-bo‘lim (a), (b), (e) va 5-bo‘lim</li>
+    <li><strong>Google Firebase</strong> (Google LLC, AQSH) — Cloud Messaging (push-token), Crashlytics (xato hisoboti) va Firebase Installations (texnik o‘rnatish identifikatori). Faqat «Roziman»dan keyin yoqiladi (firebase.google.com/support/privacy)</li>
+  </ul>
+  <p>Qonuniy talab bo‘lgandagina (masalan, sud/vakolatli organ so‘rovi) ma'lumot ochilishi mumkin.</p>
+
+  <h2>9. Saqlash muddati</h2>
+  <ul>
+    <li><strong>Qurilmadagi ma'lumot:</strong> ilovani o‘chirguncha yoki tarixni o‘zingiz tozalaguncha</li>
+    <li><strong>Serverdagi qurilma va skan yozuvlari:</strong> <strong>90 kundan ortiq saqlanmaydi.</strong> 90 kun davomida aloqaga chiqmagan qurilma yozuvi (u bilan birga uning skanlari, buyruqlari va «Guruhga qo‘shilish»da kiritilgan ism/telefon) hamda 90 kundan eski skan yozuvlari har kuni avtomatik o‘chiriladi. So‘rovingiz bo‘yicha — undan oldin ham.</li>
+    <li><strong>Umumiy tahdidlar ro‘yxati</strong> (fayl xeshi, paket nomi, nechta qurilmada ko‘rilgani) — shaxsiy ma'lumot emas; himoya ishlashi uchun muddatsiz saqlanadi</li>
     <li><strong>Zararli APK namunalari:</strong> signatura ishlab chiqish uchun saqlanadi</li>
-    <li>Yuborilgan ma'lumotni o‘chirtirishni istasangiz — quyidagi email orqali murojaat qiling; imkoni boricha o‘chiramiz</li>
+    <li><strong>Firebase ma'lumotlari:</strong> Google'ning o‘z saqlash qoidalariga ko‘ra</li>
   </ul>
 
-  <h2>11. Sizning nazoratingiz / opt-out</h2>
+  <h2>10. Sizning nazoratingiz va huquqlaringiz</h2>
+  <p>4-bo‘limdagi markaziy monitoring ilova ichida alohida tumbler bilan o‘chirilmaydi (ilovadan foydalanishning majburiy qismi). Sizda quyidagilar bor:</p>
   <ul>
-    <li><strong>Jamoatchilik ulashishini</strong> yoqish/o‘chirish: Sozlamalar → “Jamoatchilik ulashish”</li>
-    <li><strong>Shaxsiy Telegram telemetriyani</strong> o‘chirish: Diagnostika → Telegram telemetriya → galochkani olib tashlash</li>
-    <li><strong>Joylashuv:</strong> Android tizim sozlamalaridan ilova uchun ruxsatni istalgan vaqtda qaytarib olish</li>
-    <li><strong>Skan tarixini tozalash:</strong> Sozlamalar → “Tarixni tozalash”</li>
-    <li><strong>Rozilikni butunlay bekor qilish:</strong> Sozlamalar → “Rozilikni qaytarib olish”</li>
-    <li><strong>Ma'lumotni o‘chirtirish so‘rovi:</strong> quyidagi email</li>
-    <li><strong>Ilovani o‘chirish</strong> — barcha lokal ma'lumot yo‘qoladi</li>
+    <li><strong>Rozilikni qaytarib olish:</strong> Sozlamalar → «Rozilikni qaytarib olish». Shundan keyin UzGuard serveriga yangi ma'lumot yuborilmaydi; Firebase xizmatlari ilovaning keyingi ishga tushishida o‘chiriladi; ilovani ishlatish uchun keyingi ochilishda ogohlantirish oynasi qayta chiqadi.</li>
+    <li><strong>Skan tarixini tozalash:</strong> skan tarixi ekranida «Tarixni tozalash»</li>
+    <li><strong>Ruxsatlarni qaytarib olish:</strong> Android sozlamalari → Ilovalar → UzGuard → Ruxsatlar (barcha fayllarga kirish, bildirishnomalar, kamera)</li>
+    <li><strong>Ma'lumotni o‘chirtirish so‘rovi:</strong> <a href="mailto:uzguard.navoiy@gmail.com">uzguard.navoiy@gmail.com</a> manziliga yozing (yoki Telegram @zimdevuz); yozuvni topish uchun qurilma modeli va taxminiy sanani ko‘rsating (biz sizni ism bilan emas, tasodifiy ID bilan saqlaymiz). Imkoni boricha o‘chiramiz.</li>
+    <li><strong>Ilovani o‘chirish</strong> — barcha lokal ma'lumot yo‘qoladi va yangi yuborish to‘xtaydi</li>
   </ul>
 
-  <h2>12. Xavfsizlik</h2>
+  <h2>11. Xavfsizlik</h2>
   <ul>
-    <li>Barcha bulut aloqalari faqat HTTPS orqali; server sertifikati ilovaga mahkamlangan (certificate pinning)</li>
-    <li>Yuklab olinadigan bazalar raqamli imzo bilan tekshiriladi — soxta baza qabul qilinmaydi</li>
-    <li>Qurilma identifikatori — tasodifiy UUID; so‘rovlar qurilmaga xos kalit bilan imzolanadi (HMAC)</li>
-    <li>IMEI, seriya raqami, telefon raqami kabi haqiqiy identifikatorlar umuman ishlatilmaydi</li>
+    <li>Barcha bulut aloqalari faqat HTTPS orqali; UzGuard serveri uchun sertifikat mahkamlangan (certificate pinning); oddiy (HTTP) trafik taqiqlangan</li>
+    <li>Yuklab olinadigan bazalar va sozlamalar raqamli imzo bilan tekshiriladi — soxta ma'lumot qabul qilinmaydi</li>
+    <li>Qurilma identifikatori — tasodifiy UUID; yozuv so‘rovlari qurilmaga xos kalit bilan imzolanadi (HMAC)</li>
+    <li>IMEI, seriya raqami, telefon raqami kabi haqiqiy qurilma identifikatorlari ishlatilmaydi</li>
   </ul>
 
-  <h2>13. Bolalar</h2>
-  <p>UzGuard 13 yoshgacha bo‘lgan bolalarga mo‘ljallanmagan va ulardan bila turib ma'lumot yig‘ilmaydi. Agar siz ota-ona bo‘lib, 13 yoshgacha bo‘lgan bolangiz ilovadan foydalanayotganini bilsangiz — ilovani o‘chiring yoki biz bilan bog‘laning.</p>
+  <h2>12. Bolalar</h2>
+  <p>UzGuard 13 yoshgacha bo‘lgan bolalarga mo‘ljallanmagan va ulardan bila turib ma'lumot yig‘ilmaydi (13–18 yosh oralig‘ida ota-ona roziligi tavsiya etiladi). Agar siz ota-ona bo‘lib, 13 yoshgacha bo‘lgan bolangiz ilovadan foydalanayotganini bilsangiz — ilovani o‘chiring yoki biz bilan bog‘laning.</p>
 
-  <h2>14. Xalqaro o‘tkazish</h2>
-  <p>Ixtiyoriy funksiyalar yoqilganda, ma'lumotlar O‘zbekistondan tashqarida joylashgan serverlarga o‘tkazilishi mumkin: bulut infratuzilmasi (Vercel / Supabase, xalqaro) va Telegram serverlari.</p>
+  <h2>13. Xalqaro o‘tkazish</h2>
+  <p>Ma'lumotlar O‘zbekistondan tashqarida joylashgan serverlarga o‘tkaziladi: UzGuard bulut infratuzilmasi (Vercel / Supabase, xalqaro) va Google Firebase serverlari — «Roziman» bosgan HAR bir qurilmadan.</p>
 
-  <h2>15. Siyosatni yangilash</h2>
-  <p>Bu siyosat vaqti-vaqti bilan yangilanishi mumkin. Sezilarli o‘zgarishlarda ilovani ochganingizda rozilik qayta so‘raladi va bu sahifadagi “Kuchga kiradi” sanasi yangilanadi.</p>
+  <h2>14. Siyosatni yangilash</h2>
+  <p>Bu siyosat vaqti-vaqti bilan yangilanishi mumkin. Sezilarli o‘zgarishlarda ilovani ochganingizda rozilik qayta so‘raladi va bu sahifadagi «Kuchga kiradi» sanasi yangilanadi.</p>
 
-  <h2>16. Aloqa</h2>
+  <h2>15. Aloqa</h2>
   <p>Maxfiylik bo‘yicha savollar, ma'lumotga kirish yoki o‘chirtirish so‘rovlari uchun:</p>
-  <p><a class="cta" href="https://t.me/zimdevuz">@zimdevuz</a></p>
+  <p><a class="cta" href="mailto:uzguard.navoiy@gmail.com">uzguard.navoiy@gmail.com</a></p>
+  <p>Ma'lumotni o‘chirtirish so‘rovini ham shu manzilga yuboring. Telegram: <a href="https://t.me/zimdevuz">@zimdevuz</a></p>
+
+  <!-- ===================== B QISM: SAYT VERSIYASI ===================== -->
+  <h2 class="part site" id="uz-b">B qism — sayt versiyasi <span class="pill opt">GOOGLE PLAY'DA YO‘Q</span></h2>
+  <p>Bu qism FAQAT saytdan to‘g‘ridan-to‘g‘ri yuklab olingan UzGuard versiyasiga tegishli; <strong>Google Play versiyasiga tegishli emas</strong>. Sayt versiyasida A qismdagi hamma narsa amal qiladi (faqat Play'dagi alohida ogohlantirish oynasi o‘rniga shartlar va maxfiylik ekranidagi rozilik qo‘llanadi) va <strong>qo‘shimcha</strong>:</p>
+
+  <h3>B1. Telegram orqali ro‘yxatdan o‘tish</h3>
+  <p>Ilovaning sayt versiyasi bosh ekranni ochishdan oldin Telegram-bot orqali ro‘yxatdan o‘tishni so‘raydi: siz botga ismingizni yuborasiz va Telegram tasdiqlagan telefon raqamingizni ulashasiz. UzGuard serveri ismni, Telegram tasdiqlagan raqamni (+998…), Telegram chat va foydalanuvchi identifikatorlarini, @username'ni (bo‘lsa) va qurilma tokenini saqlaydi; shu chat orqali UzGuard sizga Telegram-bot xabarlarini yuborishi mumkin.</p>
+
+  <h3>B2. Joylashuv (GPS) <span class="pill opt">RUXSAT BERSANGIZ</span></h3>
+  <p>Joylashuv ruxsatini bersangiz, qurilmaning aniq koordinatasi markaziy himoya xaritasi uchun yuboriladi: ilova ochilganda; Android sozlamalarida «Har doim ruxsat berish»ni tanlasangiz — fonda ham taxminan har 3 soatda (yoki 500 m dan ortiq ko‘chganda). Uzluksiz (real vaqt) kuzatuv yo‘q. Ruxsat bermasangiz — koordinata yuborilmaydi, server faqat IP bo‘yicha taxminiy shaharni aniqlaydi. Ruxsatni Android sozlamalaridan istalgan vaqtda qaytarib olishingiz mumkin.</p>
+
+  <h3>B3. Qo‘shimcha texnik ma'lumotlar (4-bo‘lim (a) ga qo‘shimcha)</h3>
+  <ul>
+    <li><strong>Do‘kondan EMAS o‘rnatilgan (sideload) ilovalar ro‘yxati</strong> — paket nomi, imzo SHA-256 xeshi va o‘rnatilgan vaqti, eng ko‘pi 100 ta. Ilova ichiga kirilmaydi.</li>
+    <li><strong>Veb qalqoni bloklagan sayt domeni</strong> — FAQAT host (to‘liq havola, yo‘l va parametrlarsiz).</li>
+    <li><strong>Firibgar deb topilgan bildirishnomaning</strong> ko‘rinib turgan yuboruvchisi/sarlavhasi va toifasi. Bildirishnoma yoki xabarning MATNI HECH QACHON yuborilmaydi.</li>
+  </ul>
+
+  <h3>B4. Maxsus imkoniyatlar (Accessibility) va bildirishnoma-eshituvchi xizmatlari</h3>
+  <p>Sayt versiyasida ixtiyoriy «O‘rnatish qalqoni» (Accessibility xizmati) tizim o‘rnatuvchi oynasini o‘qib, zararli deb topilgan APK o‘rnatilishini bekor qilishi mumkin; bildirishnoma-eshituvchi xizmat firibgar xabarlarni qurilmada aniqlaydi. Ikkalasi ham qo‘lda yoqiladi, tahlil qurilmaning o‘zida bajariladi; ekran yoki bildirishnoma matni serverga yuborilmaydi (faqat B3 dagi yuboruvchi/toifa).</p>
+
+  <h3>B5. VPN-filtr (hozircha o‘chirilgan)</h3>
+  <p>Zararli boshqaruv domenlarini bloklovchi mahalliy DNS-filtr (VpnService). U mahalliy ishlaydi, trafikni UzGuard serveriga yo‘naltirmaydi va hozircha barcha foydalanuvchilar uchun o‘chirilgan.</p>
+
+  <h3>B6. Shaxsiy Telegram-bot <span class="pill opt">IXTIYORIY</span> <span class="pill off">standart: O‘CHIQ</span></h3>
+  <p>Yashirin Diagnostika ekranida O‘ZINGIZNING bot tokeningiz va chat_id'ni kiritsangiz, ilova hodisalarni <strong>sizning botingizga</strong> yuboradi: skan natijalari (fayl nomi, hajmi, natija, sabab, manba), yangi o‘rnatilgan ilovalar (paket nomi, nomi), ilova ishga tushishi/to‘xtashi, xato jurnallari, qurilma ma'lumotlari. Siz «tinglash»ni yoqsangiz, bot orqali holat, statistika, tarix, xavfli ro‘yxat, diagnostika (mahalliy IP va ulanish turi), versiya, qayta skan, faylni o‘chirish va jurnalni yuborish buyruqlarini berish mumkin — buyruqlar faqat siz kiritgan chat'dan qabul qilinadi. Bu ma'lumot FAQAT siz kiritgan botga boradi, UzGuard dasturchisiga emas. Bu funksiya faqat o‘z qurilmangizni o‘zingiz nazorat qilish uchun mo‘ljallangan va <strong>boshqa shaxsni uning xabarisiz kuzatish uchun ishlatilmasligi kerak</strong>.</p>
+
+  <h3>B7. O‘z-o‘zini yangilash</h3>
+  <p>Ilova Play'dan tashqarida tarqatilgani uchun yangilanishni imzolangan konfiguratsiyadagi havoladan yuklab olishi mumkin. Yangi APK HTTPS orqali yuklanadi va o‘rnatishdan oldin tekshiriladi (SHA-256, paket nomi va imzo sertifikatining aynan mosligi); qurilma ruxsat bersa yangilanish fonda, aks holda tizim tasdig‘i bilan o‘rnatiladi. Muhim yangilanish majburiy bo‘lishi mumkin. Bu jarayonda shaxsiy ma'lumot yuborilmaydi — faqat APK fayl yuklab olinadi. (Google Play'dan o‘rnatsangiz, yangilanish Play orqali keladi.)</p>
+
+  <h3>B8. UzGuard e'lon bildirishnomalari</h3>
+  <p>Sayt versiyasida UzGuard o‘zining e'lon/taklif bildirishnomalarini ko‘rsatishi mumkin (uchinchi tomon reklamasi emas): kuniga ko‘pi bilan 1 ta, tungi jim soatlarda emas; sozlamalardan o‘chiriladi.</p>
+
+  <h3>B9. Qo‘shimcha ruxsatlar</h3>
+  <p>Sayt versiyasi qo‘shimcha ravishda so‘rashi mumkin: joylashuv (aniq/taxminiy/fon), boshqa oynalar ustida ko‘rsatish (SYSTEM_ALERT_WINDOW), APK o‘rnatish (REQUEST_INSTALL_PACKAGES), batareya optimizatsiyasidan istisno va rasm/video/audio fayllarga kirish (Android 13+ da «rasm» yoki «video» niqobidagi APK'larni tekshirish uchun).</p>
+
+  <h3>B10. UzGuard jamoasining Telegram boti (api.telegram.org)</h3>
+  <p><strong>Google Play versiyasi bu botga HECH NARSA yubormaydi.</strong> Sayt versiyasi esa quyidagilarni UzGuard jamoasining Telegram botiga ham yuboradi. Ham FAQAT xavfli yoki shubhali APK aniqlanganda: APK SHA-256 xeshi, paket nomi, natija, sabab va aniqlangan signaturalar, qurilma ishlab chiqaruvchisi/modeli, Android versiyasi va <strong>APK faylning o‘zi</strong> (50 MB gacha). Shuningdek, xavfli faylni o‘chirish urinishi bo‘lsa — diagnostik xabar: bosqich holati, fayl nomi va yo‘li, hajmi, fayl mavjudligi va yozish mumkinligi, manba (masalan Telegram yoki yuklab olish), xato matni, qurilma modeli, Android va ilova versiyasi. Bu kanal bizning jamoamizga tegishli; u orqali ilova boshqarilmaydi.</p>
+  <p>Shuningdek sayt versiyasida ilova xatosi (crash) hisoboti va Sozlamalar → «Yordam markazi»dagi «Muammo haqida xabar» (o‘zingiz yozgan matn va yengil diagnostika) ham shu botga yuboriladi. Bu hisobotlar jamoa chatida saqlanadi; ma'lumot Telegram serverlari orqali o‘tadi (telegram.org/privacy).</p>
 
 </section>
 
@@ -292,23 +354,26 @@
   <p class="lead">Настоящая политика полностью объясняет, какие данные собирает приложение UzGuard (пакет <code>com.kiberqalqon</code>), зачем, с кем они делятся и как вы этим управляете. <strong>Ничего не скрыто.</strong></p>
 
   <div class="card accent">
-    <strong>В одном предложении:</strong> UzGuard выполняет все проверки <strong>на самом устройстве</strong>. Данные покидают устройство ТОЛЬКО через две <em>необязательные</em> функции, которые по умолчанию <em>выключены</em>. Мы <strong>не продаём</strong> ваши данные и не передаём их рекламным сетям.
+    <strong>Какая часть вас касается?</strong> Документ состоит из двух частей: <a href="#ru-a"><strong>Часть A — версия Google Play</strong></a> (9.6 и последующие версии Play) и <a href="#ru-b"><strong>Часть B — версия с сайта</strong></a> (APK для прямой загрузки). Если вы установили приложение из <strong>Google Play</strong> — вас касается ТОЛЬКО часть A. Функции из части B (геолокация, VPN-фильтр, служба специальных возможностей, личный Telegram-бот и т. д.) в версии Play отключены: их служб и разрешений нет в манифесте Play-приложения.
+  </div>
+
+  <div class="card accent">
+    <strong>В одном предложении (версия Google Play):</strong> UzGuard выполняет проверку вредоносного кода <strong>на самом устройстве</strong>. При первом запуске показывается отдельное «Уведомление о сборе данных»; после нажатия «Согласен» каждое устройство отправляет результаты сканирования и технические данные из раздела 4 на сервер UzGuard — это <strong>ОБЯЗАТЕЛЬНАЯ</strong> часть использования приложения, отдельно отключить её внутри приложения нельзя (при отказе приложение не работает). Версия Play <strong>не запрашивает и не читает геолокацию (GPS)</strong>. Мы <strong>не продаём</strong> ваши данные и не передаём их рекламным сетям; рекламы в приложении нет. UzGuard не является приложением государственного органа.
   </div>
 
   <div class="toc">
-    <strong>Разделы</strong>
+    <strong>Часть A — версия Google Play</strong>
     <ol>
       <li>Основной принцип</li>
       <li>Данные, хранящиеся на устройстве</li>
       <li>Обновление баз защиты (техтрафик)</li>
-      <li>Обмен для общей безопасности (опция)</li>
-      <li>Присоединение к группе (опция)</li>
-      <li>Личная Telegram-телеметрия (опция)</li>
-      <li>Самообновление</li>
+      <li>Уведомление о сборе данных и центральный мониторинг (обязательно)</li>
+      <li>Необязательные действия, которые начинаете вы</li>
       <li>Что не собирается никогда</li>
+      <li>Зачем нужны разрешения</li>
       <li>С кем мы делимся данными</li>
       <li>Срок хранения</li>
-      <li>Ваш контроль / отказ</li>
+      <li>Ваш контроль и права</li>
       <li>Безопасность</li>
       <li>Дети</li>
       <li>Международная передача</li>
@@ -317,125 +382,182 @@
     </ol>
   </div>
 
+  <h2 class="part" id="ru-a">Часть A — версия Google Play <span class="pill local">GOOGLE PLAY</span></h2>
+
   <h2>1. Основной принцип</h2>
-  <p>UzGuard — это <strong>офлайн-сканер</strong>. APK-файлы анализируются прямо на вашем устройстве (подпись, разрешения, сигнатуры вредоносного кода). Результаты сканирования и настройки хранятся <strong>только на вашем телефоне</strong>.</p>
-  <p>Данные, связанные с устройством, покидают его ТОЛЬКО через включённые вами необязательные функции:</p>
+  <p>UzGuard — это <strong>офлайн-сканер</strong>. APK-файлы анализируются прямо на вашем устройстве (подпись, разрешения, сигнатуры вредоносного кода). История сканирований, статистика и настройки хранятся <strong>только на вашем телефоне</strong>.</p>
+  <p>Данные, связанные с устройством, покидают его следующими путями:</p>
   <ul>
-    <li><strong>Обмен для общей безопасности</strong> (раздел 4) <span class="pill opt">ОПЦИЯ</span> <span class="pill off">по умолчанию: ВЫКЛ</span></li>
-    <li><strong>Личная Telegram-телеметрия</strong> (раздел 6) <span class="pill opt">ОПЦИЯ</span> <span class="pill off">по умолчанию: ВЫКЛ</span></li>
+    <li><strong>Центральный мониторинг защиты</strong> (раздел 4) <span class="pill req">ОБЯЗАТЕЛЬНО</span> — для каждого устройства, нажавшего «Согласен»; отдельно отключить внутри приложения нельзя</li>
+    <li><strong>Присоединение к группе</strong> и <strong>«Сообщить о проблеме»</strong> (раздел 5) <span class="pill opt">ОПЦИЯ</span> — только если вы сами это начинаете</li>
   </ul>
-  <p>Кроме этого приложение только <strong>скачивает</strong> базы защиты (раздел 3) — эти запросы не отправляют личных данных.</p>
+  <p>Кроме этого приложение скачивает базы защиты (раздел 3) — эти запросы не отправляют личных данных.</p>
 
   <h2>2. Данные, хранящиеся на устройстве <span class="pill local">ТОЛЬКО НА ТЕЛЕФОНЕ</span></h2>
   <p>Хранится во внутренней защищённой памяти телефона, недоступно другим приложениям:</p>
   <ul>
-    <li>История сканирований (~200 последних записей): имя APK, путь, вердикт (безопасно / подозрительно / опасно), причина, время</li>
+    <li>История сканирований (~200 последних записей): имя APK, путь, результат (безопасно / подозрительно / опасно), причина, время</li>
     <li>Счётчики статистики: всего проверок, заблокировано, безопасно</li>
-    <li>Настройки: язык, тема, уровень чувствительности, переключатели функций</li>
-    <li>Карантин: файлы, признанные опасными — в зашифрованной внутренней папке приложения</li>
+    <li>Настройки: язык, тема, уровень чувствительности, переключатели функций; необязательный PIN (только как SHA-256 с солью)</li>
+    <li>Карантин: файлы, признанные опасными — во внутренней папке приложения</li>
+    <li>Результаты проверки установленных приложений и Wi-Fi сети — анализируются только на устройстве и не отправляются на сервер</li>
   </ul>
   <p>При удалении приложения все эти данные удаляются вместе с ним.</p>
 
   <h2>3. Обновление баз защиты (технический трафик)</h2>
   <p>Чтобы антивирус оставался актуальным, приложение периодически <strong>скачивает</strong> с центрального сервера UzGuard (по защищённому HTTPS):</p>
   <ul>
-    <li>Чёрный список вирусов (SHA-256 хэши и имена пакетов новых угроз) — проверяется цифровой подписью</li>
-    <li>Настройки защиты (пороги сканера)</li>
-    <li>Ленту новостей / уведомлений безопасности</li>
+    <li>Чёрный список вирусов (SHA-256 хэши и имена пакетов новых угроз) и известные вредоносные домены — проверяются цифровой подписью</li>
+    <li>Настройки защиты (пороги сканера) — подписанная конфигурация</li>
+    <li>Ленту новостей / уведомлений безопасности и их изображения (если вы вступили в группу — объявления по коду группы)</li>
   </ul>
-  <p>Это только СКАЧИВАНИЕ — результаты сканирования, файлы или личные данные в этих запросах <strong>не отправляются</strong>. Как при любом интернет-запросе, сервер видит IP-адрес устройства — это техническая необходимость.</p>
+  <p>Это только СКАЧИВАНИЕ — результаты сканирования, файлы или личные данные в этих запросах <strong>не отправляются</strong> (приложение лишь предъявляет общий ключ приложения). Такие запросы могут выполняться при запуске приложения и до согласия. Как при любом интернет-запросе, инфраструктура сервера видит IP-адрес устройства — это техническая необходимость.</p>
 
-  <h2>4. Обмен для общей безопасности <span class="pill opt">ОПЦИЯ</span> <span class="pill off">по умолчанию: ВЫКЛ</span></h2>
-  <p>Если включить, сигналы об угрозах с устройств собираются в центральную базу, откуда сигнатуры защиты раздаются всем пользователям (стандартная практика — Kaspersky Security Network, ESET LiveGrid). Функция включается третьей галочкой на экране согласия и в любой момент отключается в <em>Настройки → «Обмен для сообщества»</em>. Даже если выключено, сканер, предупреждения и защита работают <strong>полностью</strong>.</p>
+  <h2>4. Уведомление о сборе данных и центральный мониторинг <span class="pill req">ОБЯЗАТЕЛЬНО</span></h2>
+  <p>В версии Google Play при первом запуске показывается <strong>ОТДЕЛЬНОЕ</strong> от условий и политики «Уведомление о сборе данных»: в нём перечислены данные ниже, и вы выбираете <strong>«Согласен»</strong> или <strong>«Отказаться»</strong>. <strong>Пока не нажато «Согласен»</strong>, перечисленные ниже данные не собираются и не отправляются; при «Отказаться» приложение не работает и закрывается. После «Согласен» сбор — часть использования приложения и отдельным переключателем внутри приложения не отключается. Сигналы об угрозах с устройств собираются в центральную базу, откуда сигнатуры защиты раздаются всем пользователям (стандартная практика — Kaspersky Security Network, ESET LiveGrid).</p>
 
-  <h3>(a) В центральный облачный мониторинг (Vercel + Supabase)</h3>
-  <p>При каждом сканировании (включая безопасные результаты — для статистики и зелёных точек на карте) отправляется:</p>
+  <h3>(a) На облачный сервер UzGuard (Vercel + Supabase)</h3>
   <div class="keyval">
-    <div class="row"><div class="k">Анонимный ID</div><div>Случайный UUID (токен устройства). Это <strong>НЕ</strong> IMEI, серийный номер или номер телефона.</div></div>
-    <div class="row"><div class="k">Устройство</div><div>Модель (например «Samsung SM-A536E»), версия Android, версия приложения, какие средства защиты включены</div></div>
-    <div class="row"><div class="k">Метаданные скана</div><div>SHA-256 хэш APK, имя пакета, метка, вердикт, оценка риска, причины, список опасных разрешений</div></div>
-    <div class="row"><div class="k">Местоположение (GPS)</div><div>ТОЛЬКО если вы дали разрешение на геолокацию. Для отображения устройства и региональных угроз на карте защиты. <strong>Фонового слежения НЕТ</strong> — координата считывается только когда приложение активно и округляется до ~6 знаков. Без разрешения координата вообще не отправляется.</div></div>
-    <div class="row"><div class="k">IP-адрес</div><div>Сервер видит IP при каждом запросе; без GPS определяет лишь примерный город</div></div>
-    <div class="row"><div class="k">ОПАСНЫЙ/ПОДОЗРИТ. APK-файл</div><div>ТОЛЬКО при вердикте «опасно» или «подозрительно» — сам файл (до 50 МБ) загружается в защищённое хранилище для изучения и создания новых сигнатур. <strong>БЕЗОПАСНЫЕ APK-файлы НЕ загружаются НИКОГДА.</strong></div></div>
+    <div class="row"><div class="k">Анонимный ID</div><div>Случайный токен устройства, который приложение создаёт само (на основе UUID). Это <strong>НЕ</strong> IMEI, серийный номер, номер телефона или рекламный ID. При переустановке создаётся новый ID.</div></div>
+    <div class="row"><div class="k">Устройство</div><div>Производитель и модель (например «Samsung SM-A536E»), версия Android, версия приложения (9.6 / 96)</div></div>
+    <div class="row"><div class="k">Уровни защиты</div><div>Флаги, какие уровни защиты включены: работает ли служба постоянной защиты, разрешение на уведомления, настройки обработчика ссылок/APK, оптимизация батареи, сколько часов прошло с последней полной проверки</div></div>
+    <div class="row"><div class="k">Состояние безопасности</div><div>Дата патча безопасности, установлена ли блокировка экрана, включены ли отладка по USB и режим разработчика, признаки root, статус шифрования — ТОЛЬКО техническое состояние/флаг, не текст и не файл</div></div>
+    <div class="row"><div class="k">Мобильный оператор</div><div>Только НАЗВАНИЕ оператора (например «Ucell») — не номер SIM, не IMSI, не номер телефона</div></div>
+    <div class="row"><div class="k">Метаданные скана</div><div>По каждому проверенному APK (в том числе безопасному — для статистики и «всего проверок»): хэш SHA-256, имя пакета, имя приложения, размер файла, длительность проверки, результат (безопасно / подозрительно / опасно), балл риска, причины и названия сигнатур, список опасных разрешений. Результаты проверки собственных файлов установленных на устройстве приложений не отправляются.</div></div>
+    <div class="row"><div class="k">IP-адрес и примерное место</div><div>Сервер видит и сохраняет IP-адрес при запросах; по нему определяется только <strong>примерное</strong> (уровня города/страны) место — для карты и региональной статистики угроз. Само приложение GPS-координаты не отправляет (разрешения на геолокацию нет).</div></div>
   </div>
-  <p>При включённой функции владелец панели может отправить на устройство команду <em>повторного сканирования</em> или сообщение (однократно, at-most-once). Это тоже работает только при включённой функции.</p>
 
-  <h3>(b) В Telegram-бот команды UzGuard (api.telegram.org)</h3>
-  <p>ТОЛЬКО при обнаружении опасного или подозрительного APK: SHA-256 хэш APK, имя пакета, вердикт, обнаруженная сигнатура (причина), производитель и модель устройства, версия Android, а также сам APK-файл (до 50 МБ).</p>
+  <h3>(b) Сами опасные или подозрительные APK-файлы</h3>
+  <p>ТОЛЬКО при результате «опасно» или «подозрительно» сам файл (до 50 МБ) загружается в облачное хранилище UzGuard — для глубокого изучения и создания новых сигнатур вирусов. <strong>Файлы, признанные «безопасными», НЕ загружаются НИКОГДА.</strong></p>
 
   <h3>(c) При сбое приложения (crash)</h3>
-  <p>Чтобы разработчик мог исправить ошибку: стектрейс (место ошибки в коде), модель устройства, версия Android, версия UzGuard и время.</p>
+  <p>Чтобы разработчик мог исправить ошибку: stack trace (место ошибки в коде), модель устройства, версии Android и UzGuard, время — отправляются в <strong>Google Firebase Crashlytics</strong> (с техническим идентификатором установки Firebase). Crashlytics включается только после «Согласен».</p>
 
-  <h2>5. Присоединение к группе <span class="pill opt">ОПЦИЯ — вводите вы сами</span></h2>
-  <p>Если владелец дал вам <strong>код</strong> группы (например семейный или корпоративный парк устройств), вы можете сами ввести в приложении <strong>имя, фамилию и номер телефона</strong> и присоединиться к группе. Это единственный случай, когда ваши имя и номер телефона могут быть отправлены на сервер (вместе с анонимным токеном устройства), и происходит это только когда вы сами заполнили поля и нажали «Присоединиться». Без ввода кода эти данные никогда не запрашиваются и не отправляются.</p>
+  <h3>(d) Push-уведомления (Google Firebase Cloud Messaging)</h3>
+  <p>Для быстрой доставки новостей и предупреждений Firebase Cloud Messaging создаёт для вашего устройства push-токен и хранит его на серверах Google; приложение подписывается на тему «новости» (а если вы вступили в группу — и на тему группы). Push-токен на сервер UzGuard не отправляется. Включается только после «Согласен».</p>
 
-  <h2>6. Личная Telegram-телеметрия <span class="pill opt">ОПЦИЯ</span> <span class="pill off">по умолчанию: ВЫКЛ</span></h2>
-  <p>Эта функция отправляет события в <strong>ВАШ СОБСТВЕННЫЙ</strong> Telegram-бот (например, чтобы родитель следил за телефоном ребёнка). Она работает, только если вы ввели <em>свой</em> токен бота и chat_id на скрытом экране «Диагностика».</p>
-  <p>При включении отправляется: результаты сканера (имя файла, размер, вердикт, причина, источник — telegram/whatsapp/загрузка), новые установленные приложения (имя пакета, метка), запуск/остановка приложения, crash-логи, данные устройства (производитель, модель, версия Android) и тестовые сообщения, которые вы отправили.</p>
-  <p><strong>Важно:</strong> эти данные идут ТОЛЬКО в введённый вами бот — не разработчику. Сторонняя аналитика и рекламные сети не используются.</p>
+  <h3>(e) Команды и сообщения от оператора UzGuard</h3>
+  <p>Приложение периодически запрашивает у сервера UzGuard команды оператора (с токеном устройства). Есть только три вида: (1) <em>повторное сканирование</em> — устройство запускает своё обычное сканирование; (2) <em>сообщение</em> — текст в виде уведомления; (3) если устройство помечено «потеряно/скомпрометировано» — предупреждающее уведомление. Через эти команды не читаются ваши файлы, экран, контакты или местоположение, и устройство не управляется удалённо.</p>
 
-  <h2>7. Самообновление</h2>
-  <p>Поскольку приложение распространяется вне Play Store, оно может скачивать обновление по ссылке из подписанной конфигурации. Новый APK проходит трёхуровневую проверку (подписанные метаданные, соответствие SHA-256, соответствие сертификата), после чего установка выполняется системным установщиком по одному вашему нажатию. Личные данные при этом не отправляются — только скачивается APK-файл. (При установке через Play Store обновления приходят через Play.)</p>
+  <h2>5. Необязательные действия, которые начинаете вы <span class="pill opt">ОПЦИЯ</span></h2>
+  <p><strong>Присоединение к группе.</strong> Если вам дали <strong>код</strong> группы (например семейной или корпоративной), вы можете сами ввести в приложении <strong>имя, фамилию и номер телефона</strong> и присоединиться. Эти данные видны владельцу группы и отправляются на сервер UzGuard (вместе с анонимным токеном устройства) только когда вы заполнили поля и нажали «Присоединиться». Без ввода кода они никогда не запрашиваются и не отправляются. После вступления код группы используется в запросе новостей и в названии push-темы.</p>
+  <p><strong>Сообщить о проблеме.</strong> Текст, который вы написали в Настройки → «Центр помощи», открывается в вашем почтовом приложении как письмо на <a href="mailto:uzguard.navoiy@gmail.com">uzguard.navoiy@gmail.com</a>; к письму добавляются только версия приложения, модель устройства и версия Android. Письмо отправляете вы сами — приложение само ничего не отправляет.</p>
 
-  <h2>8. Что не собирается никогда</h2>
+  <h2>6. Что не собирается никогда</h2>
   <div class="never">
-    <h3>Даже при ВКЛЮЧЁННЫХ функциях выше НИКОГДА:</h3>
+    <h3>Версия Google Play НИКОГДА:</h3>
     <ul>
-      <li>Сами безопасные APK-файлы (уходят только их метаданные для статистики)</li>
-      <li>Личные файлы (фото, видео, документы), контакты, SMS, история чатов</li>
-      <li>История браузера, пароли, токены аккаунтов</li>
-      <li>IMEI, серийный номер, MAC-адрес</li>
-      <li>(В облако) список других приложений на устройстве</li>
+      <li>Не запрашивает и не читает местоположение (GPS или приблизительное) — разрешений на геолокацию в манифесте Play-приложения нет</li>
+      <li>Не загружает сами безопасные APK-файлы (уходят только метаданные выше)</li>
+      <li>Не собирает личные файлы (фото, видео, документы), контакты, SMS, звонки, ТЕКСТ уведомлений, историю чатов, историю браузера, пароли, токены аккаунтов</li>
+      <li>Не использует IMEI, серийный номер, номер SIM/ICCID, IMSI, MAC-адрес, Android ID, рекламный ID</li>
+      <li>Не отправляет на сервер список установленных на устройстве приложений (список анализируется только на устройстве)</li>
+      <li>Не показывает рекламу; рекламные сети, Google Analytics и Firebase Analytics не используются</li>
     </ul>
     <p style="margin-bottom:2px">Имя и номер телефона отправляются только в необязательном «Присоединении к группе» (раздел 5), когда вы вводите их сами.</p>
   </div>
 
-  <h2>9. С кем мы делимся данными</h2>
-  <p>Мы <strong>не продаём</strong> ваши данные. Рекламные сети и сторонние SDK аналитики (Firebase, Crashlytics, Google Analytics) <strong>не используются</strong>. При включённых опциях данные передаются только следующей инфраструктуре:</p>
+  <h2>7. Зачем нужны разрешения</h2>
   <ul>
-    <li><strong>Облачная инфраструктура UzGuard</strong> — Vercel (хостинг) и Supabase (база/хранилище) как субпроцессоры</li>
-    <li><strong>Telegram</strong> — для командного бота и (если вы включили) каналов личной телеметрии (telegram.org/privacy)</li>
+    <li><strong>Доступ ко всем файлам</strong> (MANAGE_EXTERNAL_STORAGE) — находить и проверять APK-файлы (Загрузки, Telegram и другие папки), помещать опасные в карантин или удалять. Содержимое читается на устройстве; по разделу 4 отправляются только опасные/подозрительные APK.</li>
+    <li><strong>Список установленных приложений</strong> (QUERY_ALL_PACKAGES) — находить и вредоносные приложения, скрывшие значок. Список анализируется на устройстве.</li>
+    <li><strong>Запрос на удаление приложения</strong> (REQUEST_DELETE_PACKAGES) — удалять опасное приложение через системное окно после вашего подтверждения.</li>
+    <li><strong>Уведомления</strong> (POST_NOTIFICATIONS) и <strong>полноэкранное предупреждение</strong> (USE_FULL_SCREEN_INTENT) — своевременно предупреждать об угрозе; без разрешения показывается обычное уведомление.</li>
+    <li><strong>Служба постоянной защиты</strong> (FOREGROUND_SERVICE, тип «specialUse») и <strong>запуск после перезагрузки</strong> (RECEIVE_BOOT_COMPLETED) — поддерживать защиту в реальном времени; при работе службы в строке состояния есть уведомление.</li>
+    <li><strong>Камера</strong> — только при открытии QR-сканера; QR читается на устройстве, изображение не сохраняется и не отправляется.</li>
+    <li><strong>Интернет, состояние сети и Wi-Fi</strong> — обновление баз, отправка по разделу 4 и предупреждение на устройстве при подключении к открытой (без пароля) сети Wi-Fi.</li>
+    <li><strong>PIN-блокировка</strong> (необязательно) — цифровой PIN хранится только на устройстве. Биометрические разрешения (USE_BIOMETRIC, USE_FINGERPRINT) приходят из манифеста подключённой библиотеки и в коде приложения не используются.</li>
+    <li><strong>Shizuku</strong> (необязательно) — если вы сами установили Shizuku и выдали доступ, помогает удалить опасный файл из песочницы другого приложения.</li>
   </ul>
+  <p>В версии Google Play нет следующих разрешений/служб: геолокация (точная, приблизительная и фоновая), показ поверх других окон (SYSTEM_ALERT_WINDOW), установка APK (REQUEST_INSTALL_PACKAGES), запрос исключения из оптимизации батареи, разрешения на фото/видео/аудио, VPN-служба, служба специальных возможностей (Accessibility), служба прослушивания уведомлений и самообновление.</p>
 
-  <h2>10. Срок хранения</h2>
+  <h2>8. С кем мы делимся данными</h2>
+  <p>Мы <strong>не продаём</strong> ваши данные. Рекламные сети, Google Analytics и Firebase Analytics <strong>не используются</strong>. Данные обрабатывает только следующая инфраструктура (поставщики услуг, работающие от нашего имени и по нашим инструкциям):</p>
   <ul>
-    <li><strong>Данные на устройстве:</strong> хранятся до удаления приложения или очистки истории вами</li>
-    <li><strong>Облачная телеметрия и карта угроз:</strong> хранятся столько, сколько нужно для работы сервиса безопасности</li>
+    <li><strong>Облачная инфраструктура UzGuard</strong> — Vercel (хостинг) и Supabase (база данных и файловое хранилище): раздел 4 (a), (b), (e) и раздел 5</li>
+    <li><strong>Google Firebase</strong> (Google LLC, США) — Cloud Messaging (push-токен), Crashlytics (отчёты об ошибках) и Firebase Installations (технический идентификатор установки). Включаются только после «Согласен» (firebase.google.com/support/privacy)</li>
+  </ul>
+  <p>Данные могут быть раскрыты только при законном требовании (например, запрос суда/уполномоченного органа).</p>
+
+  <h2>9. Срок хранения</h2>
+  <ul>
+    <li><strong>Данные на устройстве:</strong> до удаления приложения или очистки истории вами</li>
+    <li><strong>Записи об устройстве и о проверках на сервере:</strong> <strong>хранятся не дольше 90 дней.</strong> Запись об устройстве, которое 90 дней не выходило на связь (вместе с его проверками, командами и именем/телефоном из формы «Вступить в группу»), и записи о проверках старше 90 дней автоматически удаляются каждый день. По вашему запросу — раньше.</li>
+    <li><strong>Общий список угроз</strong> (хэш файла, имя пакета, на скольких устройствах встречался) — не персональные данные; хранится бессрочно, чтобы защита работала</li>
     <li><strong>Образцы вредоносных APK:</strong> хранятся для разработки сигнатур</li>
-    <li>Чтобы удалить отправленные данные — напишите на email ниже; мы удалим их по возможности</li>
+    <li><strong>Данные Firebase:</strong> по правилам хранения Google</li>
   </ul>
 
-  <h2>11. Ваш контроль / отказ</h2>
+  <h2>10. Ваш контроль и права</h2>
+  <p>Центральный мониторинг (раздел 4) отдельным переключателем внутри приложения не отключается (обязательная часть использования приложения). У вас есть:</p>
   <ul>
-    <li><strong>Обмен для сообщества</strong> вкл/выкл: Настройки → «Обмен для сообщества»</li>
-    <li><strong>Личную Telegram-телеметрию</strong> отключить: Диагностика → Telegram-телеметрия → снять галочку</li>
-    <li><strong>Геолокация:</strong> отозвать разрешение в системных настройках Android в любой момент</li>
-    <li><strong>Очистить историю сканирований:</strong> Настройки → «Очистить историю»</li>
-    <li><strong>Полностью отозвать согласие:</strong> Настройки → «Отозвать согласие»</li>
-    <li><strong>Запрос на удаление данных:</strong> email ниже</li>
-    <li><strong>Удаление приложения</strong> — все локальные данные исчезают</li>
+    <li><strong>Отозвать согласие:</strong> Настройки → «Отозвать согласие». После этого новые данные на сервер UzGuard не отправляются; службы Firebase отключаются при следующем запуске приложения; для использования приложения при следующем открытии снова появится уведомление.</li>
+    <li><strong>Очистить историю сканирований:</strong> на экране истории — «Очистить историю»</li>
+    <li><strong>Отозвать разрешения:</strong> настройки Android → Приложения → UzGuard → Разрешения (доступ ко всем файлам, уведомления, камера)</li>
+    <li><strong>Запрос на удаление данных:</strong> напишите на <a href="mailto:uzguard.navoiy@gmail.com">uzguard.navoiy@gmail.com</a> (или в Telegram @zimdevuz); для поиска записи укажите модель устройства и примерную дату (мы храним вас не по имени, а по случайному ID). Удалим по возможности.</li>
+    <li><strong>Удаление приложения</strong> — все локальные данные исчезают, новая отправка прекращается</li>
   </ul>
 
-  <h2>12. Безопасность</h2>
+  <h2>11. Безопасность</h2>
   <ul>
-    <li>Всё облачное общение только по HTTPS; сертификат сервера закреплён в приложении (certificate pinning)</li>
-    <li>Скачиваемые базы проверяются цифровой подписью — поддельная база не принимается</li>
-    <li>Идентификатор устройства — случайный UUID; запросы подписываются ключом устройства (HMAC)</li>
-    <li>Настоящие идентификаторы (IMEI, серийный номер, номер телефона) не используются вовсе</li>
+    <li>Всё облачное общение только по HTTPS; сертификат сервера UzGuard закреплён в приложении (certificate pinning); обычный HTTP-трафик запрещён</li>
+    <li>Скачиваемые базы и настройки проверяются цифровой подписью — поддельные данные не принимаются</li>
+    <li>Идентификатор устройства — случайный UUID; запросы записи подписываются ключом устройства (HMAC)</li>
+    <li>Настоящие идентификаторы устройства (IMEI, серийный номер, номер телефона) не используются</li>
   </ul>
 
-  <h2>13. Дети</h2>
-  <p>UzGuard не предназначен для детей младше 13 лет, и данные о них сознательно не собираются. Если вы родитель и знаете, что вашим приложением пользуется ребёнок младше 13 лет — удалите приложение или свяжитесь с нами.</p>
+  <h2>12. Дети</h2>
+  <p>UzGuard не предназначен для детей младше 13 лет, и данные о них сознательно не собираются (для возраста 13–18 лет рекомендуется согласие родителей). Если вы родитель и знаете, что вашим приложением пользуется ребёнок младше 13 лет — удалите приложение или свяжитесь с нами.</p>
 
-  <h2>14. Международная передача</h2>
-  <p>При включённых опциях данные могут передаваться на серверы за пределами Узбекистана: облачная инфраструктура (Vercel / Supabase, международная) и серверы Telegram.</p>
+  <h2>13. Международная передача</h2>
+  <p>Данные передаются на серверы за пределами Узбекистана: облачная инфраструктура UzGuard (Vercel / Supabase, международная) и серверы Google Firebase — от КАЖДОГО устройства, нажавшего «Согласен».</p>
 
-  <h2>15. Изменения политики</h2>
+  <h2>14. Изменения политики</h2>
   <p>Эта политика может периодически обновляться. При существенных изменениях при открытии приложения повторно запрашивается согласие, а дата «Дата вступления» на этой странице обновляется.</p>
 
-  <h2>16. Контакты</h2>
+  <h2>15. Контакты</h2>
   <p>По вопросам конфиденциальности, доступа к данным или их удаления:</p>
-  <p><a class="cta" href="https://t.me/zimdevuz">@zimdevuz</a></p>
+  <p><a class="cta" href="mailto:uzguard.navoiy@gmail.com">uzguard.navoiy@gmail.com</a></p>
+  <p>Запрос на удаление данных отправляйте на этот же адрес. Telegram: <a href="https://t.me/zimdevuz">@zimdevuz</a></p>
+
+  <!-- ===================== ЧАСТЬ B: ВЕРСИЯ С САЙТА ===================== -->
+  <h2 class="part site" id="ru-b">Часть B — версия с сайта <span class="pill opt">В GOOGLE PLAY НЕТ</span></h2>
+  <p>Эта часть относится ТОЛЬКО к версии UzGuard, скачанной напрямую с сайта; <strong>к версии Google Play она не относится</strong>. В версии с сайта действует всё из части A (кроме того, что вместо отдельного уведомления Play применяется согласие на экране условий и политики) и <strong>дополнительно</strong>:</p>
+
+  <h3>B1. Регистрация через Telegram</h3>
+  <p>Версия с сайта перед открытием главного экрана просит зарегистрироваться через Telegram-бота: вы отправляете боту имя и делитесь номером телефона, подтверждённым Telegram. Сервер UzGuard сохраняет имя, подтверждённый Telegram номер (+998…), идентификаторы чата и пользователя Telegram, @username (если есть) и токен устройства; через этот чат UzGuard может присылать вам сообщения Telegram-бота.</p>
+
+  <h3>B2. Геолокация (GPS) <span class="pill opt">ЕСЛИ РАЗРЕШИТЕ</span></h3>
+  <p>Если вы дадите разрешение на геолокацию, точные координаты устройства отправляются для карты защиты: при открытии приложения; если в настройках Android выбрать «Разрешить всегда» — то и в фоне примерно раз в 3 часа (или при смещении более чем на 500 м). Непрерывного (реального времени) слежения нет. Без разрешения координата не отправляется, сервер определяет лишь примерный город по IP. Разрешение можно отозвать в настройках Android в любой момент.</p>
+
+  <h3>B3. Дополнительные технические данные (к разделу 4 (a))</h3>
+  <ul>
+    <li><strong>Список приложений, установленных НЕ из магазина (sideload)</strong> — имя пакета, SHA-256 хэш подписи и время установки, максимум 100 штук. Внутрь приложений доступ не производится.</li>
+    <li><strong>Домен сайта, заблокированного веб-щитом</strong> — ТОЛЬКО хост (без полной ссылки, пути и параметров).</li>
+    <li><strong>Видимый отправитель/заголовок уведомления</strong>, признанного мошенническим, и категория. Текст уведомления или сообщения НИКОГДА не отправляется.</li>
+  </ul>
+
+  <h3>B4. Службы специальных возможностей (Accessibility) и прослушивания уведомлений</h3>
+  <p>В версии с сайта необязательный «Щит установки» (служба Accessibility) может читать окно системного установщика и отменять установку APK, признанного вредоносным; служба прослушивания уведомлений распознаёт мошеннические сообщения на устройстве. Обе включаются вручную, анализ выполняется на самом устройстве; текст экрана или уведомлений на сервер не отправляется (только отправитель/категория из B3).</p>
+
+  <h3>B5. VPN-фильтр (пока отключён)</h3>
+  <p>Локальный DNS-фильтр (VpnService), блокирующий вредоносные домены управления. Он работает локально, не направляет трафик на сервер UzGuard и пока отключён для всех пользователей.</p>
+
+  <h3>B6. Личный Telegram-бот <span class="pill opt">ОПЦИЯ</span> <span class="pill off">по умолчанию: ВЫКЛ</span></h3>
+  <p>Если на скрытом экране «Диагностика» вы введёте токен СВОЕГО бота и chat_id, приложение будет отправлять события <strong>в ваш бот</strong>: результаты сканирования (имя файла, размер, результат, причина, источник), новые установленные приложения (имя пакета, название), запуск/остановка приложения, журналы ошибок, данные устройства. Если вы включите «прослушивание», через бот можно давать команды: состояние, статистика, история, список опасных, диагностика (локальный IP и тип соединения), версия, повторное сканирование, удаление файла и отправка журнала — команды принимаются только из введённого вами чата. Эти данные идут ТОЛЬКО в введённый вами бот, не разработчику UzGuard. Функция предназначена для контроля собственного устройства и <strong>не должна использоваться для слежения за другим человеком без его ведома</strong>.</p>
+
+  <h3>B7. Самообновление</h3>
+  <p>Так как приложение распространяется вне Google Play, оно может скачивать обновление по ссылке из подписанной конфигурации. Новый APK загружается по HTTPS и проверяется перед установкой (точное совпадение SHA-256, имени пакета и сертификата подписи); если устройство разрешает — обновление ставится в фоне, иначе — с подтверждением системы. Важное обновление может быть обязательным. Личные данные при этом не отправляются — скачивается только APK. (При установке из Google Play обновления приходят через Play.)</p>
+
+  <h3>B8. Уведомления-объявления UzGuard</h3>
+  <p>В версии с сайта UzGuard может показывать собственные уведомления-объявления/предложения (не реклама третьих лиц): не чаще 1 в сутки, не в ночные тихие часы; отключаются в настройках.</p>
+
+  <h3>B9. Дополнительные разрешения</h3>
+  <p>Версия с сайта может дополнительно запрашивать: геолокацию (точная/приблизительная/фоновая), показ поверх других окон (SYSTEM_ALERT_WINDOW), установку APK (REQUEST_INSTALL_PACKAGES), исключение из оптимизации батареи и доступ к фото/видео/аудио (на Android 13+ — для проверки APK, замаскированных под «фото» или «видео»).</p>
+
+  <h3>B10. Telegram-бот команды UzGuard (api.telegram.org)</h3>
+  <p><strong>Версия Google Play в этот бот НИЧЕГО не отправляет.</strong> Версия с сайта дополнительно отправляет в Telegram-бот команды UzGuard следующее. Также ТОЛЬКО при обнаружении опасного или подозрительного APK: хэш SHA-256, имя пакета, результат, причина и найденные сигнатуры, производитель/модель устройства, версия Android и <strong>сам APK-файл</strong> (до 50 МБ). Кроме того, при попытке удалить опасный файл — диагностическое сообщение: этап, имя и путь файла, размер, существует ли файл и можно ли писать, источник (например Telegram или загрузка), текст ошибки, модель устройства, версии Android и приложения. Этот канал принадлежит нашей команде; приложение через него не управляется.</p>
+  <p>Кроме того, в версии с сайта в этот же бот отправляются отчёт о сбое приложения (crash) и «Сообщить о проблеме» из Настройки → «Центр помощи» (написанный вами текст и краткая диагностика). Эти отчёты хранятся в чате команды; данные проходят через серверы Telegram (telegram.org/privacy).</p>
 
 </section>
 
@@ -444,14 +566,14 @@
 
 <footer>
   <div class="wrap">
-    <p><strong>UzGuard</strong> · com.kiberqalqon · Kuchga kiradi / Дата вступления: <strong>16.08.2026</strong></p>
+    <p><strong>UzGuard</strong> · com.kiberqalqon · Google Play 9.6 (96) · Kuchga kiradi / Дата вступления: <strong>08.10.2026</strong> · <a href="mailto:uzguard.navoiy@gmail.com">uzguard.navoiy@gmail.com</a></p>
     <p>Aloqa / Контакт: <a href="https://t.me/zimdevuz">@zimdevuz</a></p>
-    <p style="font-size:13px;opacity:.85">Rasmiy ro'yxatdan o'tgan / Официально зарегистрировано: O'zbekiston Respublikasi Adliya vazirligi — guvohnoma / свидетельство <strong>№ DGU 68288</strong> (15.08.2026). <a href="https://im.adliya.uz/document/check/f553d910-8914-40df-b808-f66d5bcaf5bf">Tekshirish / Проверить</a></p>
+    <p style="font-size:13px;opacity:.85">UzGuard davlat organi ilovasi emas va davlat nomidan chiqmaydi / UzGuard не является приложением государственного органа. Intellektual mulk ro'yxati / Реестр интеллектуальной собственности (im.adliya.uz): guvohnoma / свидетельство <strong>№ DGU 68288</strong> (15.08.2026) — faqat mualliflik huquqining ro'yxati, davlat tasdig'i emas / лишь регистрация авторских прав, не государственное одобрение. <a href="https://im.adliya.uz/document/check/f553d910-8914-40df-b808-f66d5bcaf5bf">Tekshirish / Проверить</a></p>
   </div>
 </footer>
 
 <script>
-  function setLang(l){
+  function setLang(l, keepHash){
     var uz = document.getElementById('doc-uz');
     var ru = document.getElementById('doc-ru');
     var bu = document.getElementById('btn-uz');
@@ -462,9 +584,14 @@
     bu.setAttribute('aria-pressed', isUz ? 'true' : 'false');
     br.setAttribute('aria-pressed', isUz ? 'false' : 'true');
     document.documentElement.setAttribute('lang', l);
-    try { location.hash = l; } catch(e){}
+    if (!keepHash) { try { location.hash = l; } catch(e){} }
   }
-  if (location.hash === '#ru') setLang('ru');
+  // #ru, #ru-a, #ru-b ... — ruscha ochiladi; #uz-b kabi bo'lim havolasi bo'lsa o'sha joyga o'tadi.
+  if (/^#ru/.test(location.hash)) {
+    setLang('ru', true);
+    var t = document.getElementById(location.hash.slice(1));
+    if (t) { t.scrollIntoView(); }
+  }
 </script>
 
 </body>
